@@ -2,9 +2,8 @@ class Task {
   static currID = 0;
   #id;
 
-  constructor(name, description, priority, dueDate) {
-    Task.currID++;
-    this.#id = Task.currID;
+  constructor(id, name, description, priority, dueDate) {
+    this.#id = id;
     this.name = name;
     this.description = description;
     this.priority = priority;
@@ -17,10 +16,8 @@ class Task {
 
   equals(task) {
     return (
-      this.name === task.name &&
-      this.description === task.description &&
-      this.priority === task.priority &&
-      this.dueDate === task.dueDate
+      JSON.stringify(this) === JSON.stringify(task) &&
+      this.id === task.id
     );
   }
 }

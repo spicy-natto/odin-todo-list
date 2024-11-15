@@ -1,6 +1,7 @@
 import Task from "../src/modules/task";
 function initializeTask() {
   return new Task(
+    "1",
     "test task",
     "test description",
     "HIGH",
@@ -31,6 +32,7 @@ describe("equals", () => {
 
   test("is false", () => {
     let newTask = new Task(
+      "2",
       "not equals task",
       "test description",
       "HIGH",
