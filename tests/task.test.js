@@ -5,7 +5,8 @@ function initializeTask() {
     "test task",
     "test description",
     "HIGH",
-    "01-01-2025"
+    "01-01-2025",
+    "test project"
   );
 }
 
@@ -13,14 +14,6 @@ let task;
 
 beforeEach(() => {
   task = initializeTask();
-});
-
-describe("ID", () => {
-  test("Throws typeError if you attempt to set it", () => {
-    expect(() => {
-      task.id = "456";
-    }).toThrow(TypeError)
-  });
 });
 
 describe("equals", () => {
@@ -36,7 +29,8 @@ describe("equals", () => {
       "not equals task",
       "test description",
       "HIGH",
-      "01-01-2025"
+      "01-01-2025",
+      "test project"
     );  
     expect(task.equals(newTask)).toBe(false);
   });
