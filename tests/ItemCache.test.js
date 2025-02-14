@@ -1,5 +1,5 @@
 import Task from "../src/modules/Task";
-import StorageHandler from "../src/modules/StorageHandler";
+import ItemCache from "../src/modules/ItemCache";
 
 function initializeTask() {
   return new Task(
@@ -11,33 +11,33 @@ function initializeTask() {
   );
 }
 
-function initStorageHandler() {
-  return new StorageHandler();
+function initItemCache() {
+  return new ItemCache();
 }
 
-let storageHandler;
+let itemCache;
 let task;
 
 beforeEach(() => {
-  storageHandler = initStorageHandler();
+  itemCache = initItemCache();
   task = initializeTask();
 });
 
 describe("Add item", () => {
   test("can get item by ID after adding", () => {
-    storageHandler.add(task);
-    expect(storageHandler.get(task).id === task.id).toBe(true);
+    itemCache.add(task);
+    expect(itemCache.get(task).id === task.id).toBe(true);
   });
 });
 
 describe("getItems", () => {
   test("returns collection of all added items", () => {
-    storageHandler.add(task);
+    itemCache.add(task);
     let task2 = initializeTask();
     task2.name = "test task 2";
-    storageHandler.add(task2);
+    itemCache.add(task2);
 
-    let allItems = Array.from(storageHandler.getAllItems());
+    let allItems = Array.from(itemCache.getItems());
 
     const isItem = (item) => (x) => x.id === item.id;
 
@@ -49,14 +49,14 @@ describe("getItems", () => {
 
 describe("Delete item", () => {
   test("removes item from storage handler", () => {
-    storageHandler.add(task);
+    itemCache.add(task);
     let task2 = initializeTask();
     task2.name = "test task 2";
-    storageHandler.add(task2);
+    itemCache.add(task2);
 
-    storageHandler.delete(task2);
+    itemCache.delete(task2);
 
-    let allItems = Array.from(storageHandler.getAllItems());
+    let allItems = Array.from(itemCache.getItems());
 
     const isItem = (item) => (x) => x.id === item.id;
 

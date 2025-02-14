@@ -1,4 +1,4 @@
-class StorageHandler {
+class ItemCache {
     #items
     
     constructor() {
@@ -17,9 +17,9 @@ class StorageHandler {
         this.#items.delete(item.id);
     }
 
-    getAllItems() {
+    getItems() {
         return this.#items.values();
     }
 }
 
-export default StorageHandler;
+export default ItemCache;
