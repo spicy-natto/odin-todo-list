@@ -17,7 +17,7 @@ function initItemCache() {
 
 let itemCache;
 let task;
-const isItem = (item) => (x) => x.id === item.id;
+const idMatches = (item) => (x) => x.id === item.id;
 
 beforeEach(() => {
   itemCache = initItemCache();
@@ -41,7 +41,7 @@ describe("getItems", () => {
     let allItems = itemCache.getItems();
 
     expect(
-      !!(allItems.find(isItem(task)) && allItems.find(isItem(task2)))
+      !!(allItems.find(idMatches(task)) && allItems.find(idMatches(task2)))
     ).toBe(true);
   });
 });
@@ -58,7 +58,7 @@ describe("Delete item", () => {
     let allItems = itemCache.getItems();
 
     expect(
-      !!(allItems.find(isItem(task)) && !allItems.find(isItem(task2)))
+      !!(allItems.find(idMatches(task)) && !allItems.find(idMatches(task2)))
     ).toBe(true);
   });
 });
