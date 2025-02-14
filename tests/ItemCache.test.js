@@ -27,7 +27,7 @@ beforeEach(() => {
 describe("Add item", () => {
   test("can get item by ID after adding", () => {
     itemCache.add(task);
-    expect(itemCache.get(task).id === task.id).toBe(true);
+    expect(itemCache.get(task.id).id === task.id).toBe(true);
   });
 });
 
