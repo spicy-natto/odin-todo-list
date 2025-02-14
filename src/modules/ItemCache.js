@@ -5,7 +5,7 @@ class ItemCache {
         this.#items = new Map();
     }
 
-    add(item) {
+    set(item) {
         this.#items.set(item.id, item);
     }
 
