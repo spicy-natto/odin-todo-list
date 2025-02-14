@@ -18,7 +18,7 @@ class ItemCache {
     }
 
     getItems() {
-        return this.#items.values();
+        return Array.from(this.#items.values());
     }
 }
 

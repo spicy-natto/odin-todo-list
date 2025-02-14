@@ -17,6 +17,7 @@ function initItemCache() {
 
 let itemCache;
 let task;
+const isItem = (item) => (x) => x.id === item.id;
 
 beforeEach(() => {
   itemCache = initItemCache();
@@ -37,9 +38,7 @@ describe("getItems", () => {
     task2.name = "test task 2";
     itemCache.add(task2);
 
-    let allItems = Array.from(itemCache.getItems());
-
-    const isItem = (item) => (x) => x.id === item.id;
+    let allItems = itemCache.getItems();
 
     expect(
       !!(allItems.find(isItem(task)) && allItems.find(isItem(task2)))
@@ -56,9 +55,7 @@ describe("Delete item", () => {
 
     itemCache.delete(task2);
 
-    let allItems = Array.from(itemCache.getItems());
-
-    const isItem = (item) => (x) => x.id === item.id;
+    let allItems = itemCache.getItems();
 
     expect(
       !!(allItems.find(isItem(task)) && !allItems.find(isItem(task2)))
