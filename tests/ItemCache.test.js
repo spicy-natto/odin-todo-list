@@ -2,13 +2,13 @@ import Task from "../src/modules/Task";
 import ItemCache from "../src/modules/ItemCache";
 
 function initializeTask() {
-  return new Task(
-    "test task",
-    "test description",
-    "HIGH",
-    "01-01-2025",
-    "test project"
-  );
+  return new Task({
+    name: "test task",
+    description: "test description",
+    priority: "HIGH",
+    dueDate: "01-01-2025",
+    project: "test project",
+  });
 }
 
 let itemCache;
