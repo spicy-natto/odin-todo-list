@@ -11,16 +11,12 @@ function initializeTask() {
   );
 }
 
-function initItemCache() {
-  return new ItemCache();
-}
-
 let itemCache;
 let task;
 const idMatches = (item) => (x) => x.id === item.id;
 
 beforeEach(() => {
-  itemCache = initItemCache();
+  itemCache = new ItemCache();
   task = initializeTask();
 });
 
