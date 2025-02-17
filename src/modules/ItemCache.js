@@ -13,10 +13,10 @@ class ItemCache {
         return this.#items.get(id)
     }
 
-    delete(item) {
-        this.#items.delete(item.id);
+    delete(id) {
+        this.#items.delete(id);
     }
-
+    
     getItems() {
         return Array.from(this.#items.values());
     }

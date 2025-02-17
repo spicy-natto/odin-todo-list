@@ -49,7 +49,7 @@ describe("Delete item", () => {
     task2.name = "test task 2";
     itemCache.set(task2);
 
-    itemCache.delete(task2);
+    itemCache.delete(task2.id);
 
     let allItems = itemCache.getItems();
 
