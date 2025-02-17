@@ -27,10 +27,12 @@ beforeEach(() => {
   // Add test data to storageHandler
   taskArray = [];
   task = initializeTask();
-  taskArray.push = task;
+  taskArray.push(task);
   let task2 = initializeTask();
+  taskArray.push(task2);
   task2.name = "test task 2";
   let task3 = initializeTask();
+  taskArray.push(task3);
   task3.name = "test task 3";
 
   taskArray.forEach(item => storageHandler.set(item));
@@ -45,7 +47,7 @@ describe("Load from storage", () => {
 
     taskArray.sort(compareItems);
     loadedData.sort(compareItems);
-
+    
     expect(JSON.stringify(taskArray)).toEqual(JSON.stringify(loadedData));
   })
 });
