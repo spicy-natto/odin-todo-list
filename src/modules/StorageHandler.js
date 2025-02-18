@@ -43,7 +43,6 @@ class StorageHandler {
       JSON.parse(localStorage.getItem(StorageHandler.allItemsStorageId))
     );
 
-    // initialize itemCache if any itemIds are found
     if (itemIds) {
       this.itemCache = new ItemCache();
       itemIds.forEach((id) => {
