@@ -10,7 +10,7 @@ class ItemCache {
     }
 
     get(id) {
-        return this.#items.get(id)
+        return this.#items.get(id);
     }
 
     delete(id) {
