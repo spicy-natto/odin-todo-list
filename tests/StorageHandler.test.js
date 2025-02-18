@@ -2,17 +2,17 @@ import Task from "../src/modules/Task";
 import StorageHandler from "../src/modules/StorageHandler";
 
 function initializeTask() {
-    return new Task({
-      name: "test task",
-      description: "test description",
-      priority: "HIGH",
-      dueDate: "01-01-2025",
-      project: "test project",
-    });
-  }
+  return new Task({
+    name: "test task",
+    description: "test description",
+    priority: "HIGH",
+    dueDate: "01-01-2025",
+    project: "test project",
+  });
+}
 
 function compareItems(a, b) {
-    return a.id - b.id;
+  return a.id - b.id;
 }
 
 let storageHandler;
@@ -20,7 +20,7 @@ let taskArray;
 let task;
 
 beforeEach(() => {
-// to fully reset the state between tests, clear the storage
+  // to fully reset the state between tests, clear the storage
   localStorage.clear();
   storageHandler = new StorageHandler();
 
@@ -35,19 +35,34 @@ beforeEach(() => {
   taskArray.push(task3);
   task3.name = "test task 3";
 
-  taskArray.forEach(item => storageHandler.set(item));
+  taskArray.forEach((item) => storageHandler.set(item));
 });
 
 describe("Load from storage", () => {
   test("successfully loads data from localStorage", () => {
-
     let loadStorageHandler = new StorageHandler();
     loadStorageHandler.loadFromStorage();
     let loadedData = loadStorageHandler.getItems();
 
     taskArray.sort(compareItems);
     loadedData.sort(compareItems);
-    
+
     expect(JSON.stringify(taskArray)).toEqual(JSON.stringify(loadedData));
-  })
+  });
+});
+
+describe("Delete object", () => {
+  test("deleting object updates localStorage", () => {
+    storageHandler.delete(task.id);
+    let oldStorageData = storageHandler.getItems();
+
+    let loadStorageHandler = new StorageHandler();
+    loadStorageHandler.loadFromStorage();
+    let loadedData = loadStorageHandler.getItems();
+
+    oldStorageData.sort(compareItems);
+    loadedData.sort(compareItems);
+
+    expect(JSON.stringify(oldStorageData)).toEqual(JSON.stringify(loadedData));
+  });
 });
