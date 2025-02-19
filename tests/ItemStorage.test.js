@@ -1,15 +1,6 @@
 import Task from "../src/modules/Task";
 import ItemStorage from "../src/modules/ItemStorage";
-
-function initializeTask() {
-    return new Task({
-      name: "test task",
-      description: "test description",
-      priority: "HIGH",
-      dueDate: "01-01-2025",
-      project: "test project",
-    });
-  }
+import util from "./testUtilities";
 
 let itemStorage;
 let task;
@@ -18,7 +9,7 @@ beforeEach(() => {
 // to fully reset the state between tests, clear the storage
   localStorage.clear();
   itemStorage = new ItemStorage();
-  task = initializeTask();
+  task = util.initializeTask();
 });
 
 describe("Add item", () => {
@@ -34,8 +25,7 @@ describe("Add item", () => {
 describe("Delete item", () => {
     test("Item is removed successfully", () => {
       itemStorage.set(task);
-      let task2 = initializeTask();
-      task2.name = "test task2";
+      let task2 = util.initializeTask(2);
       itemStorage.set(task2);
 
       itemStorage.delete(task.id);

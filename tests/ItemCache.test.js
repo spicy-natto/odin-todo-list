@@ -1,26 +1,19 @@
 import Task from "../src/modules/Task";
 import ItemCache from "../src/modules/ItemCache";
-
-function initializeTask() {
-  return new Task({
-    name: "test task",
-    description: "test description",
-    priority: "HIGH",
-    dueDate: "01-01-2025",
-    project: "test project",
-  });
-}
+import util from "./testUtilities";
 
 let itemCache;
+let itemArray;
 let task;
-const idMatches = (item) => (x) => x.id === item.id;
 
 beforeEach(() => {
   itemCache = new ItemCache();
-  task = initializeTask();
+  itemArray = util.initTaskArray(3).concat(util.initProjectArray(3));
+  task = itemArray[0];
+  itemArray.forEach((item) => itemCache.set(item));
 });
 
-describe("Add item", () => {
+describe("set", () => {
   test("can get item by ID after adding", () => {
     itemCache.set(task);
     expect(itemCache.get(task.id).id === task.id).toBe(true);
@@ -29,32 +22,22 @@ describe("Add item", () => {
 
 describe("getItems", () => {
   test("returns collection of all added items", () => {
-    itemCache.set(task);
-    let task2 = initializeTask();
-    task2.name = "test task 2";
-    itemCache.set(task2);
-
     let allItems = itemCache.getItems();
-
-    expect(
-      !!(allItems.find(idMatches(task)) && allItems.find(idMatches(task2)))
-    ).toBe(true);
+    expect(util.itemArraysAreEqual(itemArray, allItems)).toBe(true);
   });
 });
 
-describe("Delete item", () => {
-  test("removes item from storage handler", () => {
-    itemCache.set(task);
-    let task2 = initializeTask();
-    task2.name = "test task 2";
-    itemCache.set(task2);
+describe("delete", () => {
+  test("removes item from itemCache", () => {
+    itemCache.delete(itemArray[0].id);
+    let allItemsAfterDelete = itemCache.getItems();
 
-    itemCache.delete(task2.id);
+    // Remove first element from itemArray so that it will match cache
+    // after deleting first Task from cache
+    itemArray.splice(0,1)
 
-    let allItems = itemCache.getItems();
-
-    expect(
-      !!(allItems.find(idMatches(task)) && !allItems.find(idMatches(task2)))
-    ).toBe(true);
+    expect(util.itemArraysAreEqual(itemArray, allItemsAfterDelete)).toBe(
+      true
+    );
   });
 });
