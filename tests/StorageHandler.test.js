@@ -1,5 +1,6 @@
 import StorageHandler from "../src/modules/StorageHandler";
-import util from "./testUtilities";
+import testUtil from "../src/modules/testUtilities";
+import util from "../src/modules/utilities";
 
 let storageHandler;
 let itemArray;
@@ -8,7 +9,7 @@ beforeEach(() => {
   // to fully reset the state between tests, clear the storage
   localStorage.clear();
   storageHandler = new StorageHandler();
-  itemArray = util.initTaskArray(3).concat(util.initProjectArray(3));
+  itemArray = testUtil.initTaskArray(3).concat(testUtil.initProjectArray(3));
   itemArray.forEach((item) => storageHandler.set(item));
 });
 
@@ -18,7 +19,7 @@ describe("Load from storage", () => {
     loadStorageHandler.loadFromStorage();
     let loadedData = loadStorageHandler.getItems();
 
-    expect(util.itemArraysAreEqual(itemArray, loadedData));
+    expect(util.itemArraysAreEqual(itemArray, loadedData)).toBe(true);
   });
 });
 
@@ -34,6 +35,6 @@ describe("Delete object", () => {
     loadStorageHandler.loadFromStorage();
     let loadedData = loadStorageHandler.getItems();
 
-    expect(util.itemArraysAreEqual(itemArray, loadedData));
+    expect(util.itemArraysAreEqual(itemArray, loadedData)).toBe(true);
   });
 });

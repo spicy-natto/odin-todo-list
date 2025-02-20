@@ -1,18 +1,20 @@
-import Project from "../src/modules/Project";
-import Task from "../src/modules/Task";
+import Project from "./Project";
+import Task from "./Task";
 
-function initializeTask(n = 1) {
+function initializeTask(n = 1, itemId) {
   return new Task({
+    id: itemId,
     name: `test task ${n}`,
-    description: `test task decription ${n}`,
+    description: `test task description ${n}`,
     priority: "HIGH",
     dueDate: "01-01-2025",
     project: "test project",
   });
 }
 
-function initializeProject(n = 1) {
+function initializeProject(n = 1, itemId) {
   return new Project({
+    id: itemId,
     name: `test project ${n}`,
     description: `test project description ${n}`,
     priority: "HIGH",
@@ -28,29 +30,10 @@ const initItemArray = (initCallback) => (numberOfTasks) => {
 const initTaskArray = initItemArray(initializeTask);
 const initProjectArray = initItemArray(initializeProject);
 
-function idMatches(item) {
-  return (x) => x.id === item.id;
-}
-
-function compareItems(a, b) {
-  return a.id - b.id;
-}
-
-function itemArraysAreEqual(arr1, arr2) {
-  arr1.sort(compareItems);
-  arr2.sort(compareItems);
-  return (
-    arr1.length === arr2.length && arr1.every((e, i) => arr2[i].id === e.id)
-  );
-}
-
 export default {
   initializeTask,
   initializeProject,
   initItemArray,
-  idMatches,
-  compareItems,
   initTaskArray,
   initProjectArray,
-  itemArraysAreEqual,
 };

@@ -1,6 +1,6 @@
-import Task from "../src/modules/Task";
 import ItemCache from "../src/modules/ItemCache";
-import util from "./testUtilities";
+import testUtil from "../src/modules/testUtilities";
+import util from "../src/modules/utilities";
 
 let itemCache;
 let itemArray;
@@ -8,7 +8,7 @@ let task;
 
 beforeEach(() => {
   itemCache = new ItemCache();
-  itemArray = util.initTaskArray(3).concat(util.initProjectArray(3));
+  itemArray = testUtil.initTaskArray(3).concat(testUtil.initProjectArray(3));
   task = itemArray[0];
   itemArray.forEach((item) => itemCache.set(item));
 });
@@ -34,10 +34,8 @@ describe("delete", () => {
 
     // Remove first element from itemArray so that it will match cache
     // after deleting first Task from cache
-    itemArray.splice(0,1)
+    itemArray.splice(0, 1);
 
-    expect(util.itemArraysAreEqual(itemArray, allItemsAfterDelete)).toBe(
-      true
-    );
+    expect(util.itemArraysAreEqual(itemArray, allItemsAfterDelete)).toBe(true);
   });
 });
