@@ -57,8 +57,23 @@ describe("itemArraysAreEqual", () => {
   test("Arrays are the same", () => {
     let array1 = testUtil.initTaskArray(4);
     let array2 = array1.slice();
-    
+
     expect(util.itemArraysAreEqual(array2, array1)).toBe(true);
   });
-
 });
+
+describe("itemArrayToObject", () => {
+  test("Creates object with item IDs as keys and items as values", () => {
+    let itemArray = testUtil.initTaskArray(2).concat(testUtil.initProjectArray(2));
+
+    let compareItemsObj = {
+      [itemArray[0].id]: itemArray[0],
+      [itemArray[1].id]: itemArray[1],
+      [itemArray[2].id]: itemArray[2],
+      [itemArray[3].id]: itemArray[3],
+    }
+
+    expect(util.itemArrayToObject(itemArray)).toEqual(compareItemsObj);
+  });
+});
+
