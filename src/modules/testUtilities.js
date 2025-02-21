@@ -7,7 +7,7 @@ function initializeTask(n = 1, itemId) {
     name: `test task ${n}`,
     description: `test task description ${n}`,
     priority: "HIGH",
-    dueDate: "01-01-2025",
+    dueDate: new Date(new Date().toDateString()),
     project: "test project",
   });
 }
@@ -18,7 +18,7 @@ function initializeProject(n = 1, itemId) {
     name: `test project ${n}`,
     description: `test project description ${n}`,
     priority: "HIGH",
-    dueDate: "01-01-2025",
+    dueDate: new Date(new Date().toDateString()),
   });
 }
 

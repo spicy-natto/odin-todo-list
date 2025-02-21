@@ -14,8 +14,16 @@ function itemArraysAreEqual(arr1, arr2) {
   );
 }
 
+function itemArrayToObject(itemArray) {
+  return itemArray.reduce((itemsObj, item) => {
+    itemsObj[item.id] = item;
+    return itemsObj;
+  }, {});
+}
+
 export default {
   idMatches,
   compareItemsById,
   itemArraysAreEqual,
+  itemArrayToObject,
 };
