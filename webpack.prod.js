@@ -1,9 +1,9 @@
-const { mergeWithRules } = require("webpack-merge");
-const common = require("./webpack.common.js");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+import { mergeWithRules } from "webpack-merge";
+import common from "./webpack.common.js"
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
-module.exports = mergeWithRules({
+export default mergeWithRules({
   module: {
     rules: {
       test: "match",
