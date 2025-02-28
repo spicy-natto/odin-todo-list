@@ -92,6 +92,10 @@ ul {
   padding: 0;
 }
 
+p {
+  margin: 0;
+}
+
 .sidebar {
   grid-column: 1 / 2;
   padding: .5rem;
@@ -112,7 +116,34 @@ div.logo {
   margin: .2rem 0 .2rem 0;
 }
 
-.main {
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 90ch;
+  min-width: 40ch;
+  align-items: center;
+}
+
+.task {
   display: flex;
 }
 
+.task-button {
+  align-self: start;
+  width: 1.3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.task-content {
+  flex: 1;
+}
+
+.task-date-project {
+  display: flex;
+  justify-content: space-between;
+}
