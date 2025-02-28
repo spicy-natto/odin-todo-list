@@ -73,3 +73,46 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+/* Custom CSS */
+
+/* Remove after development */
+* {
+  border: 1px solid red;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  grid-column: 1 / 2;
+  padding: .5rem;
+}
+
+div.logo {
+  width: 5rem;
+  background: gold;
+  margin-bottom: 1rem;
+}
+
+.add-task {
+  margin-bottom: .2rem;
+}
+
+.sidebar-items > li,
+.project-list > li {
+  margin: .2rem 0 .2rem 0;
+}
+
+.main {
+  display: flex;
+}
+
