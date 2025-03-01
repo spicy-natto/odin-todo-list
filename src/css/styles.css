@@ -84,6 +84,7 @@ textarea:not([rows]) {
 body {
   display: grid;
   grid-template-columns: 18rem 1fr;
+  margin: 0;
 }
 
 ul {
@@ -117,6 +118,11 @@ div.logo {
   align-items: end;
 }
 
+.sidebar-item:hover {
+  background: gray;
+  opacity: 0.9;
+}
+
 .sidebar-items > li,
 .project-list > li {
   margin: .2rem 0 .2rem 0;
@@ -128,6 +134,11 @@ div.logo {
 
 .sidebar-label {
   margin-left: .2rem;
+}
+
+.project:hover {
+  background: gray;
+  opacity: 0.9;
 }
 
 main {
@@ -154,6 +165,15 @@ main {
   display: flex;
   border-bottom: 1px solid lightgray;
   padding: .4rem;
+  position: relative
+}
+
+.task:hover::before {
+  content: url("../images/dots-vertical.svg");
+  position: absolute;
+  width: 1.5rem;
+  top: .4rem;
+  left: -1rem;
 }
 
 .tasks > li:first-child {
