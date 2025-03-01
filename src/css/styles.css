@@ -78,7 +78,7 @@ textarea:not([rows]) {
 
 /* Remove after development */
 * {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 body {
@@ -111,9 +111,22 @@ div.logo {
   margin-bottom: .2rem;
 }
 
+.sidebar-item {
+  display: flex;
+  align-items: end;
+}
+
 .sidebar-items > li,
 .project-list > li {
   margin: .2rem 0 .2rem 0;
+}
+
+.sidebar-icon {
+  width: 1.5rem;
+}
+
+.sidebar-label {
+  margin-left: .2rem;
 }
 
 main {
