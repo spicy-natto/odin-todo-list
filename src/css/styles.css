@@ -83,7 +83,7 @@ textarea:not([rows]) {
 
 body {
   display: grid;
-  grid-template-columns: 15rem 1fr;
+  grid-template-columns: 18rem 1fr;
 }
 
 ul {
@@ -99,6 +99,7 @@ p {
 .sidebar {
   grid-column: 1 / 2;
   padding: .5rem;
+  background-color: rgb(226, 212, 193);
 }
 
 div.logo {
@@ -136,13 +137,27 @@ main {
 
 .main-content {
   flex: 1;
-  max-width: 90ch;
+  max-width: 100ch;
   min-width: 40ch;
   align-items: center;
 }
 
+.filter-title {
+  margin-bottom: 2rem;
+}
+
+.filter-title > h1 {
+  margin-bottom: 1rem;
+}
+
 .task {
   display: flex;
+  border-bottom: 1px solid lightgray;
+  padding: .4rem;
+}
+
+.tasks > li:first-child {
+  border-top: 1px solid lightgray;
 }
 
 .task-button {
@@ -150,10 +165,18 @@ main {
   width: 1.3rem;
   aspect-ratio: 1;
   border-radius: 50%;
+  margin-top: .4rem;
+  background: none;
+  border: 1px solid black;
+}
+
+.task-button:hover {
+  background: lightgray;
 }
 
 .task-content {
   flex: 1;
+  margin-left: 1rem;
 }
 
 .task-date-project {
