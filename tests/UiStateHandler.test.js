@@ -3,6 +3,9 @@ import { addDays } from "date-fns";
 import UiStateHandler from "../src/modules/state/UiStateHandler.js";
 import SidebarItem from "../src/modules/items/SidebarItem.js";
 import util from "../src/modules/utilities/utilities.js";
+import inbox from "../src/images/inbox-full-outline.svg";
+import today from "../src/images/calendar-today.svg";
+import upcoming from "../src/images/calendar-month-outline.svg"
 
 let uiState;
 let projects;
@@ -59,7 +62,7 @@ describe("CreateTaskViewData", () => {
 
   test("Creates Task data based on 'dateEquals' filter", () => {
     uiState.filter = new SidebarItem({
-      name: "Tomorrow",
+      name: "Today",
       filterType: "dateEqual",
       filterData: addDays(new Date(new Date().toDateString()), 1),
     });
@@ -107,15 +110,18 @@ describe("CreateSidebarData", () => {
       sideBarItems: [
         new SidebarItem({
           name: "Inbox",
+          svg: inbox,
           filterType: "all",
         }),
         new SidebarItem({
-          name: "Tomorrow",
+          name: "Today",
+          svg: today,
           filterType: "dateEqual",
           filterData: addDays(new Date(new Date().toDateString()), 1),
         }),
         new SidebarItem({
           name: "Upcoming",
+          svg: upcoming,
           filterType: "dateEqualOrGreater",
           filterData: addDays(new Date(new Date().toDateString()), 1),
         }),

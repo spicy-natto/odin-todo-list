@@ -2,20 +2,28 @@ import { isAfter, isEqual, subDays, addDays } from "date-fns";
 import util from "../utilities/utilities";
 import Project from "../items/Project";
 import SidebarItem from "../items/SidebarItem";
+import inbox from "../../images/inbox-full-outline.svg";
+import today from "../../images/calendar-today.svg";
+import upcoming from "../../images/calendar-month-outline.svg";
+
+console.log(typeof inbox);
 
 class UiStateHandler {
   static sideBarItems = [
     new SidebarItem({
       name: "Inbox",
+      svg: inbox,
       filterType: "all",
     }),
     new SidebarItem({
-      name: "Tomorrow",
+      name: "Today",
+      svg: today,
       filterType: "dateEqual",
       filterData: addDays(new Date(new Date().toDateString()), 1),
     }),
     new SidebarItem({
       name: "Upcoming",
+      svg: upcoming,
       filterType: "dateEqualOrGreater",
       filterData: addDays(new Date(new Date().toDateString()), 1),
     }),
