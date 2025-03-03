@@ -113,12 +113,16 @@ div.logo {
   margin-bottom: .2rem;
 }
 
-.sidebar-item {
+.sidebar-item,
+.add-task,
+.project {
   display: flex;
-  align-items: end;
+  align-items: center;
 }
 
-.sidebar-item:hover {
+.sidebar-item:hover,
+.project:hover,
+.add-task:hover {
   background: gray;
   opacity: 0.9;
 }
@@ -136,9 +140,12 @@ div.logo {
   margin-left: .2rem;
 }
 
-.project:hover {
-  background: gray;
-  opacity: 0.9;
+.project-icon {
+  width: 1rem;
+}
+
+.project-name {
+  margin-left: .1rem;
 }
 
 main {

@@ -6,43 +6,71 @@
     <title>Odin Template Page</title>
   </head>
   <body>
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
       <div class="logo">Replace with image</div>
-      <div class="add-task">Add task</div>
-      <ul class="sidebar-items">
+      <div class="add-task">
+        <img class="sidebar-icon" src="./images/plus-circle.svg" alt="Inbox" />
+        <div class="add-task-text">Add Task</div>
+      </div>
+      <ul class="sidebar-items" id="sidebar-items">
         <li class="sidebar-item">
-          <img class="sidebar-icon" src="./images/inbox-full-outline.svg" alt="Inbox" />
+          <img
+            class="sidebar-icon"
+            src="./images/inbox-full-outline.svg"
+            alt="Inbox"
+          />
           <div class="sidebar-label">Inbox</div>
         </li>
         <li class="sidebar-item">
-          <img class="sidebar-icon" src="./images/calendar-today.svg" alt="Inbox" />
+          <img
+            class="sidebar-icon"
+            src="./images/calendar-today.svg"
+            alt="Inbox"
+          />
           <div class="sidebar-label">Today</div>
         </li>
         <li class="sidebar-item">
-          <img class="sidebar-icon" src="./images/calendar-month-outline.svg" alt="Inbox" />
+          <img
+            class="sidebar-icon"
+            src="./images/calendar-month-outline.svg"
+            alt="Inbox"
+          />
           <div class="sidebar-label">Upcoming</div>
         </li>
         <li class="sidebar-item">
-          <img class="sidebar-icon" src="./images/check-circle-outline.svg" alt="Inbox" />
+          <img
+            class="sidebar-icon"
+            src="./images/check-circle-outline.svg"
+            alt="Inbox"
+          />
           <div class="sidebar-label">Completed</div>
         </li>
       </ul>
       <div class="projects">
         <h3>Projects</h3>
-        <ul class="project-list">
-          <li class="project">Project 1</li>
-          <li class="project">Project 2</li>
-          <li class="project">Project 3</li>
+        <ul class="project-list" id="project-list">
+          <li class="project">
+            <img class="project-icon" src="./images/pound.svg" alt="Inbox" />
+            <div class="project-name">Project 1</div>
+          </li>
+          <li class="project">
+            <img class="project-icon" src="./images/pound.svg" alt="Inbox" />
+            <div class="project-name">Project 2</div>
+          </li>
+          <li class="project">
+            <img class="project-icon" src="./images/pound.svg" alt="Inbox" />
+            <div class="project-name">Project 3</div>
+          </li>
         </ul>
       </div>
     </div>
     <main>
       <div class="main-content">
-        <div class="filter-title">
+        <div class="filter-title" id="filter-title">
           <h1>Project 1</h1>
           <p class="project-descr">Project 1 description</p>
         </div>
-        <ul class="tasks">
+        <ul class="tasks" id="tasks">
           <li class="task">
             <button type="button" class="task-button"></button>
             <div class="task-content">
