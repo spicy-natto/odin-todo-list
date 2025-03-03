@@ -1,7 +1,7 @@
-import Task from "../src/modules/Task.js";
-import util from "../src/modules/utilities.js";
-import testUtil from "../src/modules/testUtilities.js";
-import Project from "../src/modules/Project.js";
+import Task from "../src/modules/items/Task.js";
+import util from "../src/modules/utilities/utilities.js";
+import testUtil from "../src/modules/utilities/testUtilities.js";
+import Project from "../src/modules/items/Project.js";
 
 describe("initializeTask", () => {
   test("task is initialized without itemId parameter", () => {

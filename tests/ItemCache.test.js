@@ -1,6 +1,6 @@
-import ItemCache from "../src/modules/ItemCache.js";
-import testUtil from "../src/modules/testUtilities.js";
-import util from "../src/modules/utilities.js";
+import ItemCache from "../src/modules/storage/ItemCache.js";
+import testUtil from "../src/modules/utilities/testUtilities.js";
+import util from "../src/modules/utilities/utilities.js";
 
 let itemCache;
 let itemArray;

@@ -1,6 +1,6 @@
-import StorageHandler from "../src/modules/StorageHandler.js";
-import testUtil from "../src/modules/testUtilities.js";
-import util from "../src/modules/utilities.js";
+import StorageHandler from "../src/modules/storage/StorageHandler.js";
+import testUtil from "../src/modules/utilities/testUtilities.js";
+import util from "../src/modules/utilities/utilities.js";
 
 let storageHandler;
 let itemArray;

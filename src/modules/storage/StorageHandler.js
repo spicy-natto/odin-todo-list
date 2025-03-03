@@ -1,6 +1,6 @@
 import ItemCache from "./ItemCache";
 import ItemStorage from "./ItemStorage";
-import Task from "./Task";
+import Task from "../items/Task";
 
 class StorageHandler {
   // StorageHandler will save an object containing all Item IDs

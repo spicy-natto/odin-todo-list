@@ -1,8 +1,8 @@
-import testUtil from "../src/modules/testUtilities.js";
+import testUtil from "../src/modules/utilities/testUtilities.js";
 import { addDays } from "date-fns";
-import UiStateHandler from "../src/modules/UiStateHandler.js";
-import SidebarItem from "../src/modules/SidebarItem.js";
-import util from "../src/modules/utilities.js";
+import UiStateHandler from "../src/modules/state/UiStateHandler.js";
+import SidebarItem from "../src/modules/items/SidebarItem.js";
+import util from "../src/modules/utilities/utilities.js";
 
 let uiState;
 let projects;

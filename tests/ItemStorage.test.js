@@ -1,5 +1,5 @@
-import ItemStorage from "../src/modules/ItemStorage.js";
-import testUtil from "../src/modules/testUtilities.js";
+import ItemStorage from "../src/modules/storage/ItemStorage.js";
+import testUtil from "../src/modules/utilities/testUtilities.js";
 
 let itemStorage;
 let task;

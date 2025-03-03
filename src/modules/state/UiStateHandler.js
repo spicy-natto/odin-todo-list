@@ -1,7 +1,7 @@
 import { isAfter, isEqual, subDays, addDays } from "date-fns";
-import util from "./utilities";
-import Project from "./Project";
-import SidebarItem from "./SidebarItem";
+import util from "../utilities/utilities";
+import Project from "../items/Project";
+import SidebarItem from "../items/SidebarItem";
 
 class UiStateHandler {
   static sideBarItems = [
