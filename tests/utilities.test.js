@@ -1,6 +1,6 @@
-import Task from "../src/modules/Task";
-import util from "../src/modules/utilities";
-import testUtil from "../src/modules/testUtilities";
+import Task from "../src/modules/Task.js";
+import util from "../src/modules/utilities.js";
+import testUtil from "../src/modules/testUtilities.js";
 
 describe("idMatches", () => {
   test("returns true if items have same ID", () => {

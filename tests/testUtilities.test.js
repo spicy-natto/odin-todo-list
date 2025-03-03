@@ -1,7 +1,7 @@
-import Task from "../src/modules/Task";
-import util from "../src/modules/utilities";
-import testUtil from "../src/modules/testUtilities";
-import Project from "../src/modules/Project";
+import Task from "../src/modules/Task.js";
+import util from "../src/modules/utilities.js";
+import testUtil from "../src/modules/testUtilities.js";
+import Project from "../src/modules/Project.js";
 
 describe("initializeTask", () => {
   test("task is initialized without itemId parameter", () => {
@@ -12,7 +12,7 @@ describe("initializeTask", () => {
       name: "test task 2",
       description: "test task description 2",
       priority: "HIGH",
-      dueDate: "01-01-2025",
+      dueDate: new Date(new Date().toDateString()),
       project: "test project",
     });
 
@@ -37,7 +37,7 @@ describe("initializeProject", () => {
       name: "test project 2",
       description: "test project description 2",
       priority: "HIGH",
-      dueDate: "01-01-2025",
+      dueDate: new Date(new Date().toDateString()),
     });
 
     expect(project.id).toEqual(compareProject.id);

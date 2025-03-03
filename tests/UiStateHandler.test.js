@@ -1,8 +1,8 @@
-import testUtil from "../src/modules/testUtilities";
+import testUtil from "../src/modules/testUtilities.js";
 import { addDays } from "date-fns";
-import UiStateHandler from "../src/modules/UiStateHandler";
-import SidebarItem from "../src/modules/SidebarItem";
-import util from "../src/modules/utilities";
+import UiStateHandler from "../src/modules/UiStateHandler.js";
+import SidebarItem from "../src/modules/SidebarItem.js";
+import util from "../src/modules/utilities.js";
 
 let uiState;
 let projects;
@@ -115,8 +115,8 @@ describe("CreateSidebarData", () => {
           filterData: addDays(new Date(new Date().toDateString()), 1),
         }),
         new SidebarItem({
-          name: "Tomorrow",
-          filterType: "dateEqual",
+          name: "Upcoming",
+          filterType: "dateEqualOrGreater",
           filterData: addDays(new Date(new Date().toDateString()), 1),
         }),
       ],
