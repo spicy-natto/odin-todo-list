@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,5 +6,71 @@
     <title>Odin Template Page</title>
   </head>
   <body>
+    <div class="sidebar">
+      <div class="logo">Replace with image</div>
+      <div class="add-task">Add task</div>
+      <ul class="sidebar-items">
+        <li class="sidebar-item">
+          <img class="sidebar-icon" src="./images/inbox-full-outline.svg" alt="Inbox" />
+          <div class="sidebar-label">Inbox</div>
+        </li>
+        <li class="sidebar-item">
+          <img class="sidebar-icon" src="./images/calendar-today.svg" alt="Inbox" />
+          <div class="sidebar-label">Today</div>
+        </li>
+        <li class="sidebar-item">
+          <img class="sidebar-icon" src="./images/calendar-month-outline.svg" alt="Inbox" />
+          <div class="sidebar-label">Upcoming</div>
+        </li>
+        <li class="sidebar-item">
+          <img class="sidebar-icon" src="./images/check-circle-outline.svg" alt="Inbox" />
+          <div class="sidebar-label">Completed</div>
+        </li>
+      </ul>
+      <div class="projects">
+        <h3>Projects</h3>
+        <ul class="project-list">
+          <li class="project">Project 1</li>
+          <li class="project">Project 2</li>
+          <li class="project">Project 3</li>
+        </ul>
+      </div>
+    </div>
+    <main>
+      <div class="main-content">
+        <div class="filter-title">
+          <h1>Project 1</h1>
+          <p class="project-descr">Project 1 description</p>
+        </div>
+        <ul class="tasks">
+          <li class="task">
+            <button type="button" class="task-button"></button>
+            <div class="task-content">
+              <div class="task-info">
+                <div class="task-title">Test task 1</div>
+                <div class="task-descr">Test task description 1</div>
+              </div>
+              <div class="task-date-project">
+                <p class="task-date">01/02/2024</p>
+                <p class="task-project">Project 1</p>
+              </div>
+            </div>
+          </li>
+          <li class="task">
+            <button type="button" class="task-button"></button>
+            <div class="task-content">
+              <div class="task-info">
+                <div class="task-title">Test task 2</div>
+                <div class="task-descr">Test task description 2</div>
+              </div>
+              <div class="task-date-project">
+                <p class="task-date">01/02/2024</p>
+                <p class="task-project">Project 2</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
   </body>
 </html>
