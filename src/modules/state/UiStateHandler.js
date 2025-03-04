@@ -5,6 +5,7 @@ import SidebarItem from "../items/SidebarItem.js";
 import inbox from "../../images/inbox-full-outline.svg";
 import today from "../../images/calendar-today.svg";
 import upcoming from "../../images/calendar-month-outline.svg";
+import completed from "../../images/check-circle-outline.svg";
 
 console.log(typeof inbox);
 
@@ -25,6 +26,12 @@ class UiStateHandler {
       name: "Upcoming",
       svg: upcoming,
       filterType: "dateEqualOrGreater",
+      filterData: addDays(new Date(new Date().toDateString()), 1),
+    }),
+    new SidebarItem({
+      name: "Completed",
+      svg: completed,
+      filterType: "completed",
       filterData: addDays(new Date(new Date().toDateString()), 1),
     }),
   ];
