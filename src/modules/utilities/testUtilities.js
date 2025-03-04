@@ -1,5 +1,5 @@
-import Project from "../items/Project";
-import Task from "../items/Task";
+import Project from "../items/Project.js";
+import Task from "../items/Task.js";
 
 function initializeTask(n = 1, itemId) {
   return new Task({

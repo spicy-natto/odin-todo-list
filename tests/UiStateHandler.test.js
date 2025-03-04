@@ -3,9 +3,6 @@ import { addDays } from "date-fns";
 import UiStateHandler from "../src/modules/state/UiStateHandler.js";
 import SidebarItem from "../src/modules/items/SidebarItem.js";
 import util from "../src/modules/utilities/utilities.js";
-import inbox from "../src/images/inbox-full-outline.svg";
-import today from "../src/images/calendar-today.svg";
-import upcoming from "../src/images/calendar-month-outline.svg"
 
 let uiState;
 let projects;
