@@ -1,7 +1,7 @@
 import { isAfter, isEqual, subDays, addDays } from "date-fns";
-import util from "../utilities/utilities";
-import Project from "../items/Project";
-import SidebarItem from "../items/SidebarItem";
+import util from "../utilities/utilities.js";
+import Project from "../items/Project.js";
+import SidebarItem from "../items/SidebarItem.js";
 import inbox from "../../images/inbox-full-outline.svg";
 import today from "../../images/calendar-today.svg";
 import upcoming from "../../images/calendar-month-outline.svg";

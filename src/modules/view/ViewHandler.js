@@ -21,7 +21,8 @@ class ViewHandler {
   }
 
   renderSidebar(sidebarItems) {
-    sidebarItems.foreach((item) =>
+    this.sidebarList.innerHTML = "";
+    sidebarItems.forEach((item) =>
       this.sidebarList.appendChild(this.#createSidebarDom(item)),
     );
   }
