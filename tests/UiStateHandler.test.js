@@ -104,31 +104,3 @@ describe("CreateTaskViewData", () => {
   });
 });
 
-describe("CreateSidebarData", () => {
-  test("Creates sidebar data from project list", () => {
-    let sideBarData = {
-      sideBarItems: [
-        new SidebarItem({
-          name: "Inbox",
-          svg: inbox,
-          filterType: "all",
-        }),
-        new SidebarItem({
-          name: "Today",
-          svg: today,
-          filterType: "dateEqual",
-          filterData: addDays(new Date(new Date().toDateString()), 1),
-        }),
-        new SidebarItem({
-          name: "Upcoming",
-          svg: upcoming,
-          filterType: "dateEqualOrGreater",
-          filterData: addDays(new Date(new Date().toDateString()), 1),
-        }),
-      ],
-      projects: projects,
-    };
-
-    expect(uiState.createSidebarData(projects)).toEqual(sideBarData);
-  });
-});

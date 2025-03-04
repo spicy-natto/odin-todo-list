@@ -61,13 +61,6 @@ class UiStateHandler {
       tasks: filteredTasks,
     };
   }
-
-  createSidebarData(projects) {
-    return {
-      sideBarItems: UiStateHandler.sideBarItems,
-      projects: projects,
-    };
-  }
 }
 
 export default UiStateHandler;
