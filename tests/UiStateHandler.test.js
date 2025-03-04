@@ -88,6 +88,23 @@ describe("CreateTaskViewData", () => {
 
     expect(uiState.createTaskViewData(projects, tasks)).toEqual(taskViewData);
   });
+  test("Creates Task data based on 'completed' filter", () => {
+    uiState.filter = new SidebarItem({
+      name: "Completed",
+      filterType: "completed",
+    });
+
+    tasks[3].completed = true;
+    tasks[4].completed = true;
+
+    let taskViewData = {
+      // Remove unused project from array
+      projects: util.itemArrayToObject([projects[1], projects[2]]),
+      tasks: [tasks[3], tasks[4]],
+    };
+
+    expect(uiState.createTaskViewData(projects, tasks)).toEqual(taskViewData);
+  });
   test("Creates Task data based on 'all' if filterType of filter object is not recognized", () => {
     uiState.filter = new SidebarItem({
       name: "Invalid",
