@@ -1,7 +1,9 @@
 import util from "../utilities/utilities.js";
+import addIcon from "../../images/plus-circle.svg";
 
 class ViewHandler {
   sidebarList = document.getElementById("sidebar-items");
+  addDiv = document.getElementById("add-task");
 
   #createSidebarDom({ svg, name }) {
     const li = document.createElement("li");
@@ -25,6 +27,19 @@ class ViewHandler {
     sidebarItems.forEach((item) =>
       this.sidebarList.appendChild(this.#createSidebarDom(item)),
     );
+  }
+
+  renderAddTask() {
+    const icon = util.htmlToNode(addIcon);
+    icon.classList.add("sidebar-icon");
+
+    const label = document.createElement("div");
+    label.textContent = "Add Task";
+    label.classList.add("add-task-text");
+
+    this.addDiv.innerHTML = "";
+    this.addDiv.appendChild(icon);
+    this.addDiv.appendChild(label);
   }
 }
 

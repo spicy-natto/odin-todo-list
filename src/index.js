@@ -8,3 +8,4 @@ console.log(svgText);
 const viewHandler = new ViewHandler();
 console.log(UiStateHandler.sideBarItems);
 viewHandler.renderSidebar(UiStateHandler.sideBarItems);
+viewHandler.renderAddTask();
