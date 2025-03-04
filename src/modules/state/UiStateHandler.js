@@ -40,6 +40,8 @@ class UiStateHandler {
         return (task) => isAfter(task.dueDate, subDays(item.filterData, 1));
       case "dateEqual":
         return (task) => isEqual(task.dueDate, item.filterData);
+      case "completed":
+        return (task) => task.completed === true;
       default:
         // return all values
         return (task) => task;
