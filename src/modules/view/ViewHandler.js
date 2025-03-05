@@ -1,29 +1,16 @@
-import util from "../utilities/utilities.js";
-import projectIcon from "../../images/pound.svg";
 import { format } from "date-fns";
 import SidebarView from "./SidebarView.js";
 import AddTaskView from "./AddTaskView.js";
 import ProjectsView from "./ProjectsView.js";
+import TitleView from "./TitleView.js";
 
 class ViewHandler {
-  title = document.getElementById("filter-title");
   taskList = document.getElementById("tasks");
 
   addTask = new AddTaskView();
   sideBar = new SidebarView();
   projects = new ProjectsView();
-
-  renderTitle({ name, description }) {
-    this.title.innerHTML = "";
-
-    const h1 = document.createElement("h1");
-    h1.textContent = name;
-    this.title.appendChild(h1);
-
-    const p = document.createElement("p");
-    p.textContent = description;
-    this.title.appendChild(p);
-  }
+  title = new TitleView();
 
   #createTaskDom(projects, { name, description, dueDate, project }) {
     const li = document.createElement("li");
