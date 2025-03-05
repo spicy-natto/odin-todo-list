@@ -7,8 +7,6 @@ import today from "../../images/calendar-today.svg";
 import upcoming from "../../images/calendar-month-outline.svg";
 import completed from "../../images/check-circle-outline.svg";
 
-console.log(typeof inbox);
-
 class UiStateHandler {
   static sideBarItems = [
     new SidebarItem({
@@ -36,8 +34,12 @@ class UiStateHandler {
     }),
   ];
 
-  filter;
-  
+  filter = new SidebarItem({
+    name: "Inbox",
+    svg: inbox,
+    filterType: "all",
+  });
+
   #createFilterFun(item) {
     let filterType = item instanceof Project ? "project" : item.filterType;
     switch (filterType) {
