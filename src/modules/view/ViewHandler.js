@@ -1,29 +1,16 @@
 import util from "../utilities/utilities.js";
-import addIcon from "../../images/plus-circle.svg";
 import projectIcon from "../../images/pound.svg";
 import { format } from "date-fns";
 import SidebarView from "./SidebarView.js";
+import AddTaskView from "./AddTaskView.js";
 
 class ViewHandler {
-  addDiv = document.getElementById("add-task");
   projectList = document.getElementById("project-list");
   title = document.getElementById("filter-title");
   taskList = document.getElementById("tasks");
 
   sideBar = new SidebarView();
-
-  renderAddTask() {
-    const icon = util.htmlToNode(addIcon);
-    icon.classList.add("sidebar-icon");
-
-    const label = document.createElement("div");
-    label.textContent = "Add Task";
-    label.classList.add("add-task-text");
-
-    this.addDiv.innerHTML = "";
-    this.addDiv.appendChild(icon);
-    this.addDiv.appendChild(label);
-  }
+  addTask = new AddTaskView();
 
   #createProjectDom({ name }) {
     const li = document.createElement("li");

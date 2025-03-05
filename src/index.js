@@ -28,7 +28,7 @@ tasks[5].dueDate = addDays(tasks[5].dueDate, 4);
 const viewHandler = new ViewHandler();
 console.log(UiStateHandler.sideBarItems);
 viewHandler.sideBar.render(UiStateHandler.sideBarItems);
-viewHandler.renderAddTask();
+viewHandler.addTask.renderButton();
 
 viewHandler.renderProjects(projects);
 viewHandler.renderTitle(projects[0]);
