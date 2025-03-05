@@ -3,37 +3,15 @@ import projectIcon from "../../images/pound.svg";
 import { format } from "date-fns";
 import SidebarView from "./SidebarView.js";
 import AddTaskView from "./AddTaskView.js";
+import ProjectsView from "./ProjectsView.js";
 
 class ViewHandler {
-  projectList = document.getElementById("project-list");
   title = document.getElementById("filter-title");
   taskList = document.getElementById("tasks");
 
-  sideBar = new SidebarView();
   addTask = new AddTaskView();
-
-  #createProjectDom({ name }) {
-    const li = document.createElement("li");
-    li.classList.add("project");
-
-    const icon = util.htmlToNode(projectIcon);
-    icon.classList.add("project-icon");
-    li.appendChild(icon);
-
-    const label = document.createElement("div");
-    label.classList.add("project-name");
-    label.textContent = name;
-    li.appendChild(label);
-
-    return li;
-  }
-
-  renderProjects(projects) {
-    this.projectList.innerHTML = "";
-    projects.forEach((project) =>
-      this.projectList.appendChild(this.#createProjectDom(project)),
-    );
-  }
+  sideBar = new SidebarView();
+  projects = new ProjectsView();
 
   renderTitle({ name, description }) {
     this.title.innerHTML = "";

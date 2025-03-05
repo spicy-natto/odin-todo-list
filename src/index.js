@@ -30,6 +30,6 @@ console.log(UiStateHandler.sideBarItems);
 viewHandler.sideBar.render(UiStateHandler.sideBarItems);
 viewHandler.addTask.renderButton();
 
-viewHandler.renderProjects(projects);
+viewHandler.projects.render(projects);
 viewHandler.renderTitle(projects[0]);
 viewHandler.renderTasks(uiState.createTaskViewData(projects, tasks));
