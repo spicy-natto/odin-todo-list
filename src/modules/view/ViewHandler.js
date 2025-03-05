@@ -6,6 +6,7 @@ class ViewHandler {
   sidebarList = document.getElementById("sidebar-items");
   addDiv = document.getElementById("add-task");
   projectList = document.getElementById("project-list");
+  title = document.getElementById("filter-title");
 
   #createSidebarDom({ svg, name }) {
     const li = document.createElement("li");
@@ -62,9 +63,21 @@ class ViewHandler {
 
   renderProjects(projects) {
     this.projectList.innerHTML = "";
-    projects.forEach((item) =>
-      this.projectList.appendChild(this.#createProjectDom(item)),
+    projects.forEach((project) =>
+      this.projectList.appendChild(this.#createProjectDom(project)),
     );
+  }
+
+  renderTitle({name, description}) {
+    this.title.innerHTML = "";
+    
+    const h1 = document.createElement("h1");
+    h1.textContent = name;
+    this.title.appendChild(h1);
+
+    const p = document.createElement("p");
+    p.textContent = description;
+    this.title.appendChild(p);
   }
 }
 

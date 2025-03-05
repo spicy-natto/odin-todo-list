@@ -13,3 +13,4 @@ viewHandler.renderAddTask();
 
 const projects = testUtil.initProjectArray(3);
 viewHandler.renderProjects(projects);
+viewHandler.renderTitle(projects[0]);
