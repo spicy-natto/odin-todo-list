@@ -31,4 +31,4 @@ viewHandler.sideBar.render(UiStateHandler.sideBarItems);
 viewHandler.addTask.renderButton();
 viewHandler.projects.render(projects);
 viewHandler.title.render(uiState.filter);
-viewHandler.renderTasks(uiState.createTaskViewData(projects, tasks));
+viewHandler.tasks.render(uiState.createTaskViewData(projects, tasks));
