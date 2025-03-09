@@ -234,17 +234,44 @@ main {
   background-color: lightgoldenrodyellow;
   border-radius: 1rem;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-#dim-screen
-{
-    position:fixed;
-    padding:0;
-    margin:0;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    background:rgba(0,0,0,0.4);
-    z-index: 1;
+.task-form {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.popup-name-descr {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.popup-descr {
+  margin-top: 0.2rem;
+}
+
+.popup-task-info {
+  display: flex;
+  margin-top: 1rem;
+}
+
+#dim-screen {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
