@@ -224,6 +224,15 @@ main {
   justify-content: space-between;
 }
 
+.popup-and-dim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  pointer-events: none;
+}
+
 .popup {
   position: fixed;
   top: 50%;
@@ -236,13 +245,15 @@ main {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  justify-content: stretch;
+  pointer-events: auto;
 }
 
-.task-form {
+.popup-form {
   display: flex;
   flex-direction: column;
   padding: 3rem;
+  flex: 1;
 }
 
 .popup-name-descr {
@@ -264,6 +275,12 @@ main {
   margin-top: 1rem;
 }
 
+.popup-ok {
+  align-self: flex-end;
+  padding: .2rem 1rem;
+  margin-top: auto;
+}
+
 #dim-screen {
   position: fixed;
   padding: 0;
@@ -274,4 +291,5 @@ main {
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1;
+  pointer-events: auto;
 }
