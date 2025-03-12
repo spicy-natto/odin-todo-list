@@ -32,3 +32,4 @@ viewHandler.addTask.renderButton();
 viewHandler.projects.render(projects);
 viewHandler.title.render(uiState.filter);
 viewHandler.tasks.render(uiState.createTaskViewData(projects, tasks));
+viewHandler.popup.render(tasks[0], projects);

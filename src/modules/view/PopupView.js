@@ -1,7 +1,10 @@
+import { format } from "date-fns";
+import Task from "../items/Task.js";
+
 class PopupView {
     popupAndDim = document.getElementById("popup-and-dim");
 
-      #createDom() {
+      #createItemDom(item, projects) {
         const popupDiv = document.createElement("div");
         popupDiv.classList.add("popup");
         popupDiv.setAttribute("id", "popup");
@@ -10,27 +13,63 @@ class PopupView {
         popupForm.classList.add("popup-form");
         popupDiv.appendChild(popupForm);
 
-        popupForm.appendChild(this.#createPopupNameAndDescr());
+        popupForm.appendChild(this.#createPopupNameAndDescr(item));
+
+        if (item instanceof Task) {
+          popupForm.appendChild(this.#createTaskInfo(item, projects));
+        }
+
+        return popupDiv;
       }
 
-      #createPopupNameAndDescr() {
+      #createPopupNameAndDescr(item) {
         const div = document.createElement("div");
-        div.classList.append("popup-name-descr");
+        div.classList.add("popup-name-descr");
 
         const input = document.createElement("input");
         input.classList.add("popup-name");
         input.setAttribute("type", "text");
-        input.setAttribute("value", "Text Task 1");
+        input.setAttribute("value", item.name);
         div.appendChild(input);
 
         const textArea = document.createElement("textarea");
-        textArea.classList.append("popup-descr");
-        textArea.textContent="Test Task 1";
+        textArea.classList.add("popup-descr");
+        textArea.value = item.description;
+        div.appendChild(textArea);
+
+        return div;
       }
 
-      render() {
+      #createTaskInfo(task, projects) {
+        const taskInfoDiv = document.createElement("div");
+        taskInfoDiv.classList.add("popup-task-info");
+        taskInfoDiv.appendChild(this.#createTaskDate(task));
+
+        return taskInfoDiv;
+      }
+
+      #createTaskDate(task) {
+        const div = document.createElement("div");
+
+        const label = document.createElement("label");
+        label.setAttribute("for", "task-date");
+        label.classList.add("popup-date-label");
+        label.textContent = "Due Date:";
+        div.appendChild(label);
+
+        const input = document.createElement("input");
+        input.setAttribute("type", "date");
+        input.setAttribute("name", "task-date");
+        input.classList.add("popup-date");
+        input.value = format(task.dueDate, "yyyy-MM-dd");
+        div.appendChild(input);
+
+        return div;
+      }
+
+      render(item, projects) {
         this.popupAndDim.innerHTML = "";
-        this.popupAndDim.appendChild(this.#createDom());
+        this.popupAndDim.appendChild(this.#createItemDom(item, projects));
       }
 }
 
