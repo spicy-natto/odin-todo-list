@@ -93,28 +93,32 @@
           <input type="text" class="popup-name" value="Test Task 1">
           <textarea class="popup-descr">Test Task 1 description</textarea>
         </div>
-        <ul class="popup-task-info">
-          <li>
-            <label for="task1-date" class="popup-date-label">Due Date:</label>
-            <input type="date" name="task1-date" class="popup-date">
-          </li>
-          <li>
-            <label for="task1-proj-select" class="task-proj-label">Project:</label>
-            <select name="task1-project" id="task1-proj-select" class="popup-task-proj">
+        <div class="popup-task-info">
+          <div>
+            <label for="task-date" class="popup-date-label">Due Date:</label>
+            <input type="date" name="task-date" class="popup-date">
+          </div>
+          <div>
+            <label for="task-proj-select" class="task-proj-label">Project:</label>
+            <select name="task-project" id="task-proj-select" class="popup-task-proj">
               <option value="project-1-id">Project 1</option>
               <option value="project-2-id">Project 2</option>
               <option value="project-3-id">Project 3</option>
             </select>
-          </li>
-          <li>
-            <label for="task1-proj-select" class="task-priority-label">Priority:</label>
-            <select name="task1-priority" id="task1-priority-select" class="popup-task-priority">
+          </div>
+          <div>
+            <label for="task-proj-select" class="task-priority-label">Priority:</label>
+            <select name="task-priority" id="task-priority-select" class="popup-task-priority">
               <option value="priority-1-id">P1</option>
               <option value="priority-2-id">P2</option>
               <option value="priority-3-id">P3</option>
             </select>
-          </li>
-        </ul>
+          </div>
+          <div>
+            <label for="task-completed" class="task-priority-label">Completed:</label>
+            <input type="checkbox" name="task-completed" id="task-completed" class="popup-task-completed">
+          </div>
+        </div>
         <button class="popup-ok" type="button">OK</button>
       </form>
     </div>
