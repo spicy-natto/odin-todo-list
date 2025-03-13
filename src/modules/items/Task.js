@@ -1,6 +1,7 @@
 import shortUUID from "short-uuid";
 
 class Task {
+  static priorities = ["High", "Medium", "Low"];
   #id;
   objectType = "task";
 

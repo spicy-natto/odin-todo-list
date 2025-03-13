@@ -45,6 +45,7 @@ class PopupView {
     taskInfoDiv.classList.add("popup-task-info");
     taskInfoDiv.appendChild(this.#createTaskDate(task));
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
+    taskInfoDiv.appendChild(this.#createPrioritySelect(task));
 
     return taskInfoDiv;
   }
@@ -94,6 +95,35 @@ class PopupView {
     const option = document.createElement("option");
     option.setAttribute("value", project.id);
     option.textContent = project.name;
+    return option;
+  }
+
+  #createPrioritySelect(task) {
+    const div = document.createElement("div");
+
+    const label = document.createElement("label");
+    label.setAttribute("for", "task-priority-select");
+    label.classList.add("task-priority-label");
+    label.textContent = "Priority:";
+    div.appendChild(label);
+
+    const select = document.createElement("select");
+    select.setAttribute("name", "task-priority");
+    select.setAttribute("id", "task-priority-select");
+    select.classList.add("popup-task-priority");
+    Task.priorities.forEach((priority) =>
+      select.appendChild(this.#createPriorityOption(priority)),
+    );
+    select.value = task.priority;
+    div.appendChild(select);
+
+    return div;
+  }
+
+  #createPriorityOption(priority) {
+    const option = document.createElement("option");
+    option.setAttribute("value", priority);
+    option.textContent = priority;
     return option;
   }
 
