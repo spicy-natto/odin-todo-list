@@ -1,7 +1,7 @@
 class ItemStorage {
   set(item) {
     // Append id field since #id is not enumerable
-    localStorage.setItem(item.id, JSON.stringify({...item, id: item.id}));
+    localStorage.setItem(item.id, JSON.stringify(item));
   }
 
   get(id) {
