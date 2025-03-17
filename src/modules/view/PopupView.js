@@ -47,6 +47,7 @@ class PopupView {
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
     taskInfoDiv.appendChild(this.#createPrioritySelect(task));
     taskInfoDiv.appendChild(this.#createCheckbox());
+    taskInfoDiv.appendChild(this.#createButton());
 
     return taskInfoDiv;
   }
@@ -79,6 +80,8 @@ class PopupView {
     label.classList.add("task-proj-label");
     label.textContent = "Project:";
     div.appendChild(label);
+
+
 
     const select = document.createElement("select");
     select.setAttribute("name", "task-project");
@@ -147,9 +150,30 @@ class PopupView {
     return div;
   }
 
+  #createButton() {
+    const button = document.createElement("button");
+    button.setAttribute("id", "popup-ok");
+    button.setAttribute("type", "button");
+    button.textContent = "OK";
+    button.classList.add("popup-ok");
+
+    return button;
+  }
+
+  #createDimDiv() {
+    const dimDiv = document.createElement("div");
+    dimDiv.setAttribute("id", "dim-screen");
+    return dimDiv;
+  }
+
   render(item, projects) {
     this.popupAndDim.innerHTML = "";
     this.popupAndDim.appendChild(this.#createItemDom(item, projects));
+    this.popupAndDim.appendChild(this.#createDimDiv());
+  }
+
+  clear() {
+    this.popupAndDim.innerHTML = "";
   }
 }
 
