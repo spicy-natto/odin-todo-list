@@ -46,6 +46,7 @@ class PopupView {
     taskInfoDiv.appendChild(this.#createTaskDate(task));
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
     taskInfoDiv.appendChild(this.#createPrioritySelect(task));
+    taskInfoDiv.appendChild(this.#createCheckbox());
 
     return taskInfoDiv;
   }
@@ -62,6 +63,7 @@ class PopupView {
     const input = document.createElement("input");
     input.setAttribute("type", "date");
     input.setAttribute("name", "task-date");
+    input.setAttribute("id", "task-date");
     input.classList.add("popup-date");
     input.value = format(task.dueDate, "yyyy-MM-dd");
     div.appendChild(input);
@@ -125,6 +127,24 @@ class PopupView {
     option.setAttribute("value", priority);
     option.textContent = priority;
     return option;
+  }
+
+  #createCheckbox() {
+    const div = document.createElement("div");
+    const label = document.createElement("label");
+    label.setAttribute("for", "task-completed-select");
+    label.classList.add("task-priority-label");
+    label.textContent = "Completed:";
+    div.appendChild(label);
+
+    const input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("name", "task-completed");
+    input.setAttribute("id", "task-completed");
+    input.classList.add("popup-task-completed");
+    div.appendChild(input);
+
+    return div;
   }
 
   render(item, projects) {
