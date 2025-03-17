@@ -13,6 +13,10 @@ class Task {
     this.project = project;
     this.completed = completed ? completed : false;
   }
+
+  equals(task) {
+    return JSON.stringify(this) === JSON.stringify(task);
+  }
 }
 
 export default Task;

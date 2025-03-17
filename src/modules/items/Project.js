@@ -10,6 +10,10 @@ class Project {
         this.priority = priority;
         this.dueDate = dueDate;
     }
+
+    equals(project) {
+        return JSON.stringify(this) === JSON.stringify(project);
+    }
 }
 
 export default Project;
