@@ -2,11 +2,10 @@ import shortUUID from "short-uuid";
 
 class Task {
   static priorities = ["High", "Medium", "Low"];
-  #id;
   objectType = "task";
 
   constructor({ id, name, description, priority, dueDate, project, completed }) {
-    this.#id = id ? id : shortUUID.generate();
+    this.id = id ? id : shortUUID.generate();
     this.name = name;
     this.description = description;
     this.priority = priority;
@@ -14,11 +13,6 @@ class Task {
     this.project = project;
     this.completed = completed ? completed : false;
   }
-
-  get id() {
-    return this.#id;
-  }
-
 }
 
 export default Task;
