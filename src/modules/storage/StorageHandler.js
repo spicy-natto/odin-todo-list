@@ -1,6 +1,6 @@
-import ItemCache from "./ItemCache";
-import ItemStorage from "./ItemStorage";
-import Task from "../items/Task";
+import ItemCache from "./ItemCache.js";
+import ItemStorage from "./ItemStorage.js";
+import util from "../utilities/utilities.js"
 
 class StorageHandler {
   // StorageHandler will save an object containing all Item IDs
@@ -46,7 +46,7 @@ class StorageHandler {
     if (itemIds) {
       this.itemCache = new ItemCache();
       itemIds.forEach((id) => {
-        this.itemCache.set(new Task(this.itemStorage.get(id)));
+        this.itemCache.set(util.itemFactory(this.itemStorage.get(id)));
       });
     }
   }
