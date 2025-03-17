@@ -10,6 +10,10 @@ class SidebarItem {
         this.filterType = filterType;
         this.filterData = filterData;
     }
+
+    equals(sideBarItem) {
+        return JSON.stringify(this) === JSON.stringify(sideBarItem);
+    }
 }
 
 export default SidebarItem;
