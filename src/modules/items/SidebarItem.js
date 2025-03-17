@@ -1,7 +1,7 @@
 import shortUUID from "short-uuid";
 
 class SidebarItem {
-    itemType = "sideBarItem";
+    itemType = "SidebarItem";
 
     constructor({id, name, filterType = "All", filterData, svg}) {
         this.id = id ? id : shortUUID.generate();

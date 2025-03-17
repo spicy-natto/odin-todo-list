@@ -2,7 +2,7 @@ import shortUUID from "short-uuid";
 
 class Task {
   static priorities = ["High", "Medium", "Low"];
-  objectType = "task";
+  objectType = "Task";
 
   constructor({ id, name, description, priority, dueDate, project, completed }) {
     this.id = id ? id : shortUUID.generate();

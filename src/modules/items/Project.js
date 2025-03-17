@@ -1,7 +1,7 @@
 import shortUUID from "short-uuid";
 
 class Project {
-    objectType = "project";
+    objectType = "Project";
 
     constructor({id, name}) {
         this.id = id ? id : shortUUID.generate();
