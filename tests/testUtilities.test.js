@@ -11,7 +11,7 @@ describe("initializeTask", () => {
       id: task.id,
       name: "test task 2",
       description: "test task description 2",
-      priority: "HIGH",
+      priority: "High",
       dueDate: new Date(new Date().toDateString()),
       project: "test project",
     });
@@ -36,7 +36,7 @@ describe("initializeProject", () => {
       id: project.id,
       name: "test project 2",
       description: "test project description 2",
-      priority: "HIGH",
+      priority: "High",
       dueDate: new Date(new Date().toDateString()),
     });
 
