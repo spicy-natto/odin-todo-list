@@ -1,6 +1,8 @@
 import ItemCache from "./ItemCache.js";
 import ItemStorage from "./ItemStorage.js";
 import util from "../utilities/utilities.js"
+import Task from "../items/Task.js";
+import Project from "../items/Project.js";
 
 class StorageHandler {
   // StorageHandler will save an object containing all Item IDs
@@ -22,9 +24,18 @@ class StorageHandler {
     return this.itemCache.get(id);
   }
 
-  getItems() {
+  get items() {
     return this.itemCache.getItems();
   }
+
+  get tasks() {
+    return this.itemCache.getItems().filter((item) => item instanceof Task);
+  }
+
+  get projects() {
+    return this.itemCache.getItems().filter((item) => item instanceof Project);
+  }
+
 
   set(item) {
     this.itemCache.set(item);
