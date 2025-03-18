@@ -20,6 +20,24 @@ class Controller {
         this.storageHandler.tasks,
       ),
     );
+
+    this.#subscribeToEvents();
+  }
+
+  #subscribeToEvents() {
+    this.viewHandler.projects.projectSelectEvent.addListener(this.selectProjectFun);
+  }
+
+  get selectProjectFun() {
+    return (project) => {
+        this.uiState.filter = project;
+        this.viewHandler.tasks.render(
+            this.uiState.createTaskViewData(
+              this.storageHandler.projects,
+              this.storageHandler.tasks,
+            ),
+          );
+      }
   }
 }
 
