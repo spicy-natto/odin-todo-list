@@ -149,6 +149,10 @@ div.logo {
   margin: 0.2rem 0 0.2rem 0;
 }
 
+.sidebar-selected {
+  background: lightpink;
+}
+
 .sidebar-icon {
   width: 1.5rem;
 }

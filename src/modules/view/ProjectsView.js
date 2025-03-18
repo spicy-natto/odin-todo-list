@@ -9,6 +9,7 @@ class ProjectsView {
   #createDom(project) {
     const li = document.createElement("li");
     li.classList.add("project");
+    li.setAttribute("id", project.id);
 
     const icon = util.htmlToNode(projectIcon);
     icon.classList.add("project-icon");
@@ -33,6 +34,16 @@ class ProjectsView {
       projectDom.addEventListener("click", this.#triggerEvent(project));
       this.projectList.appendChild(projectDom);
     });
+  }
+
+  deselect() {
+    const projectsDom = Array.from(document.getElementsByClassName("project"));
+    projectsDom.forEach((item) => item.classList.remove("sidebar-selected"));
+  }
+
+  select(project) {
+    const projectDom = document.getElementById(project.id);
+    projectDom.classList.add("sidebar-selected");
   }
 }
 

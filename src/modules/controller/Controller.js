@@ -37,6 +37,9 @@ class Controller {
               this.storageHandler.tasks,
             ),
           );
+          this.viewHandler.sideBar.deselect();
+          this.viewHandler.projects.deselect();
+          this.viewHandler.projects.select(project);
       }
   }
 }
