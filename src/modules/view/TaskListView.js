@@ -6,6 +6,7 @@ class TaskListView {
   #createDom(projects, { name, description, dueDate, project }) {
     const li = document.createElement("li");
     li.classList.add("task");
+    li.setAttribute("tabindex", "0");
 
     const button = document.createElement("button");
     button.setAttribute("type", "button");

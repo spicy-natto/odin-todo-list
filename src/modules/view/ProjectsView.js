@@ -10,6 +10,7 @@ class ProjectsView {
     const li = document.createElement("li");
     li.classList.add("project");
     li.setAttribute("id", project.id);
+    li.setAttribute("tabindex", "0");
 
     const icon = util.htmlToNode(projectIcon);
     icon.classList.add("project-icon");

@@ -7,6 +7,7 @@
         const li = document.createElement("li");
         li.classList.add("sidebar-item");
         li.setAttribute("id", id);
+        li.setAttribute("tabindex", "0");
     
         const icon = util.htmlToNode(svg);
         icon.classList.add("sidebar-icon");
