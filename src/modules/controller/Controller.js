@@ -13,8 +13,7 @@ class Controller {
     this.viewHandler.sideBar.render(UiStateHandler.sidebarItems);
     this.viewHandler.addTask.renderButton();
     this.viewHandler.projects.render(this.storageHandler.projects);
-    this.viewHandler.title.render(this.uiState.filter);
-
+    this.#renderTitle();
     this.#selectFilter();
     this.#subscribeToEvents();
   }
@@ -44,11 +43,16 @@ class Controller {
     );
   }
 
+  #renderTitle() {
+    this.viewHandler.title.render(this.uiState.filter);
+  }
+
   get filterSelectFunction() {
     return (item) => {
       this.uiState.filter = item;
       this.#renderTaskList();
       this.#selectFilter();
+      this.#renderTitle();
     };
   }
 }
