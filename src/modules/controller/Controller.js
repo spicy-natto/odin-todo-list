@@ -10,7 +10,7 @@ class Controller {
   init() {
     this.storageHandler.loadFromStorage();
 
-    this.viewHandler.sideBar.render(UiStateHandler.sideBarItems);
+    this.viewHandler.sideBar.render(UiStateHandler.sidebarItems);
     this.viewHandler.addTask.renderButton();
     this.viewHandler.projects.render(this.storageHandler.projects);
     this.viewHandler.title.render(this.uiState.filter);
@@ -20,6 +20,11 @@ class Controller {
         this.storageHandler.tasks,
       ),
     );
+
+    this.viewHandler.sideBar.deselect();
+    this.viewHandler.projects.deselect();
+    this.viewHandler.projects.select(this.uiState.filter);
+    this.viewHandler.sideBar.select(this.uiState.filter);
 
     this.#subscribeToEvents();
   }

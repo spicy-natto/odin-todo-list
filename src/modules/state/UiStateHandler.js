@@ -8,11 +8,11 @@ import upcoming from "../../images/calendar-month-outline.svg";
 import completed from "../../images/check-circle-outline.svg";
 
 class UiStateHandler {
-  static sideBarItems = [
+  static sidebarItems = [
     new SidebarItem({
       name: "Inbox",
       svg: inbox,
-      filterType: "all",
+      filterType: "noProject",
     }),
     new SidebarItem({
       name: "Today",
@@ -34,23 +34,28 @@ class UiStateHandler {
     }),
   ];
 
-  filter = new SidebarItem({
-    name: "Inbox",
-    svg: inbox,
-    filterType: "all",
-  });
+  filter = UiStateHandler.sidebarItems.find(
+    (sideBarItem) => sideBarItem.name === "Today",
+  );
 
   #createFilterFun(item) {
     let filterType = item instanceof Project ? "project" : item.filterType;
     switch (filterType) {
       case "project":
-        return (task) => task.project === item.id;
+        return (task) => task.project === item.id && !task.completed;
       case "dateEqualOrGreater":
-        return (task) => isAfter(task.dueDate, subDays(item.filterData, 1));
+        return (task) =>
+          isAfter(task.dueDate, subDays(item.filterData, 1)) && !task.completed;
       case "dateEqual":
-        return (task) => isEqual(task.dueDate, item.filterData);
+        return (task) =>
+          isEqual(task.dueDate, item.filterData) && !task.completed;
       case "completed":
-        return (task) => task.completed === true;
+        return (task) => task.completed;
+      case "noProject":
+        return (task) => {
+          console.log(task.name + " " + task.project);
+          return !task.project;
+        };
       default:
         // return all values
         return (task) => task;
