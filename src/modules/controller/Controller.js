@@ -14,21 +14,18 @@ class Controller {
     this.viewHandler.addTask.renderButton();
     this.viewHandler.projects.render(this.storageHandler.projects);
     this.viewHandler.title.render(this.uiState.filter);
-    this.viewHandler.tasks.render(
-      this.uiState.createTaskViewData(
-        this.storageHandler.projects,
-        this.storageHandler.tasks,
-      ),
-    );
 
     this.#selectFilter();
-
     this.#subscribeToEvents();
   }
 
   #subscribeToEvents() {
-    this.viewHandler.projects.projectSelectEvent.addListener(this.selectProjectFun);
-    this.viewHandler.sideBar.SidebarSelectEvent.addListener(this.selectSidebarFun);
+    this.viewHandler.projects.projectSelectEvent.addListener(
+      this.filterSelectFunction,
+    );
+    this.viewHandler.sideBar.SidebarSelectEvent.addListener(
+      this.filterSelectFunction,
+    );
   }
 
   #selectFilter() {
@@ -38,30 +35,21 @@ class Controller {
     this.viewHandler.sideBar.select(this.uiState.filter);
   }
 
-  get selectProjectFun() {
-    return (project) => {
-        this.uiState.filter = project;
-        this.viewHandler.tasks.render(
-            this.uiState.createTaskViewData(
-              this.storageHandler.projects,
-              this.storageHandler.tasks,
-            ),
-          );
-          this.#selectFilter();
-      }
+  #renderTaskList() {
+    this.viewHandler.tasks.render(
+      this.uiState.createTaskViewData(
+        this.storageHandler.projects,
+        this.storageHandler.tasks,
+      ),
+    );
   }
 
-  get selectSidebarFun() {
-    return (sidebarItem) => {
-        this.uiState.filter = sidebarItem;
-        this.viewHandler.tasks.render(
-            this.uiState.createTaskViewData(
-              this.storageHandler.projects,
-              this.storageHandler.tasks,
-            ),
-          );
-          this.#selectFilter();
-      }
+  get filterSelectFunction() {
+    return (item) => {
+      this.uiState.filter = item;
+      this.#renderTaskList();
+      this.#selectFilter();
+    };
   }
 }
 
