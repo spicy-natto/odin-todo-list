@@ -21,10 +21,7 @@ class Controller {
       ),
     );
 
-    this.viewHandler.sideBar.deselect();
-    this.viewHandler.projects.deselect();
-    this.viewHandler.projects.select(this.uiState.filter);
-    this.viewHandler.sideBar.select(this.uiState.filter);
+    this.#selectFilter();
 
     this.#subscribeToEvents();
   }
@@ -32,6 +29,13 @@ class Controller {
   #subscribeToEvents() {
     this.viewHandler.projects.projectSelectEvent.addListener(this.selectProjectFun);
     this.viewHandler.sideBar.SidebarSelectEvent.addListener(this.selectSidebarFun);
+  }
+
+  #selectFilter() {
+    this.viewHandler.sideBar.deselect();
+    this.viewHandler.projects.deselect();
+    this.viewHandler.projects.select(this.uiState.filter);
+    this.viewHandler.sideBar.select(this.uiState.filter);
   }
 
   get selectProjectFun() {
@@ -43,9 +47,7 @@ class Controller {
               this.storageHandler.tasks,
             ),
           );
-          this.viewHandler.sideBar.deselect();
-          this.viewHandler.projects.deselect();
-          this.viewHandler.projects.select(project);
+          this.#selectFilter();
       }
   }
 
@@ -58,9 +60,7 @@ class Controller {
               this.storageHandler.tasks,
             ),
           );
-          this.viewHandler.projects.deselect();
-          this.viewHandler.sideBar.deselect();
-          this.viewHandler.sideBar.select(sidebarItem);
+          this.#selectFilter();
       }
   }
 }
