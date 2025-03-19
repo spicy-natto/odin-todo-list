@@ -4,6 +4,7 @@ import StorageHandler from "./modules/storage/StorageHandler.js";
 import { addDays } from "date-fns";
 import Controller from "./modules/controller/Controller.js";
 
+localStorage.clear();
 const storageHandler = new StorageHandler();
 
 //projects[3] is unused by tasks
@@ -25,6 +26,7 @@ tasks[4].project = projects[2].id;
 tasks[4].dueDate = addDays(tasks[4].dueDate, 3);
 tasks[5].project = projects[2].id;
 tasks[5].dueDate = addDays(tasks[5].dueDate, 4);
+tasks[5].completed = true;
 tasks.forEach((tasks) => storageHandler.set(tasks));
 
 const controller = new Controller();

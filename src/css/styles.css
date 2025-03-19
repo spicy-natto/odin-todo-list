@@ -214,8 +214,12 @@ main {
   border: 1px solid black;
 }
 
+.task-button-completed {
+  background: black;
+}
+
 .task-button:hover {
-  background: lightgray;
+  background: darkgrey;
 }
 
 .task-content {
