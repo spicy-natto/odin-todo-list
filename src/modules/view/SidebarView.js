@@ -1,24 +1,32 @@
   import util from "../utilities/utilities.js";
+  import Event from "../controller/Event.js";
   
   class SidebarView {
     sidebarList = document.getElementById("sidebar-items");
+    SidebarSelectEvent = new Event();
     
-    #createDom({ svg, name, id }) {
+    #createDom(sidebarItem) {
         const li = document.createElement("li");
         li.classList.add("sidebar-item");
-        li.setAttribute("id", id);
+        li.setAttribute("id", sidebarItem.id);
         li.setAttribute("tabindex", "0");
     
-        const icon = util.htmlToNode(svg);
+        const icon = util.htmlToNode(sidebarItem.svg);
         icon.classList.add("sidebar-icon");
         li.appendChild(icon);
     
         const label = document.createElement("div");
         label.classList.add("sidebar-label");
-        label.textContent = name;
+        label.textContent = sidebarItem.name;
         li.appendChild(label);
+
+        li.addEventListener("click", this.#triggerEvent(sidebarItem));
     
         return li;
+      }
+
+      #triggerEvent(sidebarItem) {
+        return () => this.SidebarSelectEvent.trigger(sidebarItem);
       }
     
       render(sidebarItems) {

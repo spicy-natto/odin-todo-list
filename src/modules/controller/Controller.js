@@ -26,6 +26,7 @@ class Controller {
 
   #subscribeToEvents() {
     this.viewHandler.projects.projectSelectEvent.addListener(this.selectProjectFun);
+    this.viewHandler.sideBar.SidebarSelectEvent.addListener(this.selectSidebarFun);
   }
 
   get selectProjectFun() {
@@ -40,6 +41,21 @@ class Controller {
           this.viewHandler.sideBar.deselect();
           this.viewHandler.projects.deselect();
           this.viewHandler.projects.select(project);
+      }
+  }
+
+  get selectSidebarFun() {
+    return (sidebarItem) => {
+        this.uiState.filter = sidebarItem;
+        this.viewHandler.tasks.render(
+            this.uiState.createTaskViewData(
+              this.storageHandler.projects,
+              this.storageHandler.tasks,
+            ),
+          );
+          this.viewHandler.projects.deselect();
+          this.viewHandler.sideBar.deselect();
+          this.viewHandler.sideBar.select(sidebarItem);
       }
   }
 }
