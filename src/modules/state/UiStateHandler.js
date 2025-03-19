@@ -63,9 +63,9 @@ class UiStateHandler {
   }
 
   createTaskViewData(projects, tasks) {
-    let projectsObj = util.itemArrayToObject(projects);
-    let projectsFromTasks = {};
-    let filteredTasks = tasks.filter(this.#createFilterFun(this.filter));
+    const projectsObj = util.itemArrayToObject(projects);
+    const projectsFromTasks = {};
+    const filteredTasks = tasks.filter(this.#createFilterFun(this.filter));
     filteredTasks.forEach(
       (task) => (projectsFromTasks[task.project] = projectsObj[task.project]),
     );
