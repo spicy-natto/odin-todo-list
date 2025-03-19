@@ -9,7 +9,6 @@ class Controller {
 
   init() {
     this.storageHandler.loadFromStorage();
-
     this.viewHandler.sideBar.render(UiStateHandler.sidebarItems);
     this.viewHandler.addTask.renderButton();
     this.viewHandler.projects.render(this.storageHandler.projects);
@@ -20,11 +19,12 @@ class Controller {
 
   #subscribeToEvents() {
     this.viewHandler.projects.projectSelectEvent.addListener(
-      this.filterSelectFunction,
+      this.#filterSelectFunction,
     );
     this.viewHandler.sideBar.SidebarSelectEvent.addListener(
-      this.filterSelectFunction,
+      this.#filterSelectFunction,
     );
+    this.viewHandler.addTask.addTaskEvent.addListener(this.#setTaskFunction);
   }
 
   #selectFilter() {
@@ -47,12 +47,18 @@ class Controller {
     this.viewHandler.title.render(this.uiState.filter);
   }
 
-  get filterSelectFunction() {
+  get #filterSelectFunction() {
     return (item) => {
       this.uiState.filter = item;
       this.#renderTaskList();
       this.#selectFilter();
       this.#renderTitle();
+    };
+  }
+
+  get #setTaskFunction() {
+    return (task) => {
+      this.viewHandler.popup.render(task, this.storageHandler.projects);
     };
   }
 }

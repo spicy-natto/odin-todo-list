@@ -9,9 +9,9 @@ class Task {
     this.name = name;
     this.description = description;
     this.priority = priority;
-    this.dueDate = dueDate;
+    this.dueDate = dueDate ?? new Date();
     this.project = project;
-    this.completed = completed ? completed : false;
+    this.completed = completed ?? false;
   }
 
   equals(task) {
