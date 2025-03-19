@@ -6,6 +6,7 @@ import { parse } from "date-fns";
 class PopupView {
   popupAndDim = document.getElementById("popup-and-dim");
   popupOkEvent = new Event();
+  popupCancelEvent = new Event();
 
   #createItemDom(item, projects) {
     const popupDiv = document.createElement("div");
@@ -52,7 +53,8 @@ class PopupView {
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
     taskInfoDiv.appendChild(this.#createPrioritySelect(task));
     taskInfoDiv.appendChild(this.#createCheckbox());
-    taskInfoDiv.appendChild(this.#createButton());
+    taskInfoDiv.appendChild(this.#createOkButton());
+    taskInfoDiv.appendChild(this.#createCancelButton());
 
     return taskInfoDiv;
   }
@@ -153,16 +155,28 @@ class PopupView {
     return div;
   }
 
-  #createButton() {
+  #createOkButton() {
     const button = document.createElement("button");
     button.setAttribute("id", "popup-ok");
     button.setAttribute("type", "button");
     button.textContent = "OK";
     button.classList.add("popup-ok");
-    button.addEventListener("click", this.#triggerEventFunction);
+    button.addEventListener("click", this.#okEventFunction);
 
     return button;
   }
+
+  #createCancelButton() {
+    const button = document.createElement("button");
+    button.setAttribute("id", "popup-cancel");
+    button.setAttribute("type", "button");
+    button.textContent = "Cancel";
+    button.classList.add("popup-cancel");
+    button.addEventListener("click", () => this.popupCancelEvent.trigger());
+
+    return button;
+  }
+
 
   #createDimDiv() {
     const dimDiv = document.createElement("div");
@@ -170,7 +184,7 @@ class PopupView {
     return dimDiv;
   }
 
-  #triggerEventFunction = () => {
+  #okEventFunction = () => {
     const name = document.getElementById("popup-name").value;
     const description = document.getElementById("popup-descr").value;
     const dueDate = parse(document.getElementById("task-date").value, 'yyyy-MM-dd', new Date());

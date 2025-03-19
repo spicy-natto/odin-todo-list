@@ -31,6 +31,9 @@ class Controller {
     this.viewHandler.popup.popupOkEvent.addListener(
       this.#popupOkFunction,
     );
+    this.viewHandler.popup.popupCancelEvent.addListener(
+        this.#popupCancelFunction,
+      );
   }
 
   #selectFilter() {
@@ -68,6 +71,10 @@ class Controller {
     this.storageHandler.set(task);
     this.viewHandler.popup.clear();
     this.#renderTaskList();
+  }
+
+  #popupCancelFunction = () => {
+    this.viewHandler.popup.clear();
   }
 }
 

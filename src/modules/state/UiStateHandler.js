@@ -18,7 +18,7 @@ class UiStateHandler {
       name: "Today",
       svg: today,
       filterType: "dateEqual",
-      filterData: addDays(new Date(new Date().toDateString()), 1),
+      filterData: new Date(new Date().toDateString()),
     }),
     new SidebarItem({
       name: "Upcoming",
