@@ -24,7 +24,7 @@ class ProjectsView {
     return li;
   }
 
-  #triggerEvent(project) {
+  #getTriggerEvent(project) {
     return () => this.projectSelectEvent.trigger(project);
   }
 
@@ -32,7 +32,7 @@ class ProjectsView {
     this.projectList.innerHTML = "";
     projects.forEach((project) => {
       const projectDom = this.#createDom(project);
-      projectDom.addEventListener("click", this.#triggerEvent(project));
+      projectDom.addEventListener("click", this.#getTriggerEvent(project));
       this.projectList.appendChild(projectDom);
     });
   }

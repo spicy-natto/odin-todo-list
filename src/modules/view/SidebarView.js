@@ -20,12 +20,12 @@ class SidebarView {
     label.textContent = sidebarItem.name;
     li.appendChild(label);
 
-    li.addEventListener("click", this.#triggerEvent(sidebarItem));
+    li.addEventListener("click", this.#getTriggerEvent(sidebarItem));
 
     return li;
   }
 
-  #triggerEvent(sidebarItem) {
+  #getTriggerEvent(sidebarItem) {
     return () => this.SidebarSelectEvent.trigger(sidebarItem);
   }
 

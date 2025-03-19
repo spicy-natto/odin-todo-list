@@ -1,8 +1,11 @@
 import { format } from "date-fns";
 import Task from "../items/Task.js";
+import Event from "../controller/Event.js";
+import { parse } from "date-fns";
 
 class PopupView {
   popupAndDim = document.getElementById("popup-and-dim");
+  popupOkEvent = new Event();
 
   #createItemDom(item, projects) {
     const popupDiv = document.createElement("div");
@@ -28,12 +31,14 @@ class PopupView {
 
     const input = document.createElement("input");
     input.classList.add("popup-name");
+    input.setAttribute("id", "popup-name");
     input.setAttribute("type", "text");
     input.setAttribute("value", item.name);
     div.appendChild(input);
 
     const textArea = document.createElement("textarea");
     textArea.classList.add("popup-descr");
+    textArea.setAttribute("id", "popup-descr");
     textArea.value = item.description;
     div.appendChild(textArea);
 
@@ -80,8 +85,6 @@ class PopupView {
     label.classList.add("task-proj-label");
     label.textContent = "Project:";
     div.appendChild(label);
-
-
 
     const select = document.createElement("select");
     select.setAttribute("name", "task-project");
@@ -156,6 +159,7 @@ class PopupView {
     button.setAttribute("type", "button");
     button.textContent = "OK";
     button.classList.add("popup-ok");
+    button.addEventListener("click", this.#triggerEventFunction);
 
     return button;
   }
@@ -165,6 +169,26 @@ class PopupView {
     dimDiv.setAttribute("id", "dim-screen");
     return dimDiv;
   }
+
+  #triggerEventFunction = () => {
+    const name = document.getElementById("popup-name").value;
+    const description = document.getElementById("popup-descr").value;
+    const dueDate = parse(document.getElementById("task-date").value, 'yyyy-MM-dd', new Date());
+    const project = document.getElementById("task-proj-select").value;
+    const priority = document.getElementById("task-priority-select").value;
+    const completed = document.getElementById("task-completed").checked;
+
+    const task = new Task({
+      name: name,
+      description: description,
+      dueDate: dueDate,
+      project: project,
+      priority: priority,
+      completed: completed,
+    });
+
+    this.popupOkEvent.trigger(task);
+  };
 
   render(item, projects) {
     this.popupAndDim.innerHTML = "";

@@ -14,6 +14,7 @@ class Controller {
     this.viewHandler.projects.render(this.storageHandler.projects);
     this.#renderTitle();
     this.#selectFilter();
+    this.#renderTaskList();
     this.#subscribeToEvents();
   }
 
@@ -24,7 +25,12 @@ class Controller {
     this.viewHandler.sideBar.SidebarSelectEvent.addListener(
       this.#filterSelectFunction,
     );
-    this.viewHandler.addTask.addTaskEvent.addListener(this.#setTaskFunction);
+    this.viewHandler.addTask.addTaskEvent.addListener(
+      this.#triggerPopupFunction,
+    );
+    this.viewHandler.popup.popupOkEvent.addListener(
+      this.#popupOkFunction,
+    );
   }
 
   #selectFilter() {
@@ -47,19 +53,21 @@ class Controller {
     this.viewHandler.title.render(this.uiState.filter);
   }
 
-  get #filterSelectFunction() {
-    return (item) => {
-      this.uiState.filter = item;
-      this.#renderTaskList();
-      this.#selectFilter();
-      this.#renderTitle();
-    };
-  }
+  #filterSelectFunction = (item) => {
+    this.uiState.filter = item;
+    this.#renderTaskList();
+    this.#selectFilter();
+    this.#renderTitle();
+  };
 
-  get #setTaskFunction() {
-    return (task) => {
-      this.viewHandler.popup.render(task, this.storageHandler.projects);
-    };
+  #triggerPopupFunction = (task) => {
+    this.viewHandler.popup.render(task, this.storageHandler.projects);
+  };
+
+  #popupOkFunction = (task) => {
+    this.storageHandler.set(task);
+    this.viewHandler.popup.clear();
+    this.#renderTaskList();
   }
 }
 
