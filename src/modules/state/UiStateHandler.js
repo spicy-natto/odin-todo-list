@@ -53,8 +53,7 @@ class UiStateHandler {
         return (task) => task.completed;
       case "noProject":
         return (task) => {
-          console.log(task.name + " " + task.project);
-          return !task.project;
+          return !task.project && !task.completed;
         };
       default:
         // return all values
