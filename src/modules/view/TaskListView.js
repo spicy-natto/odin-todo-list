@@ -1,7 +1,9 @@
 import { format } from "date-fns";
+import Event from "../controller/Event.js";
 
 class TaskListView {
   taskList = document.getElementById("tasks");
+  completeTaskEvent = new Event();
 
   #createDom(projects, task) {
     const li = document.createElement("li");
@@ -12,6 +14,7 @@ class TaskListView {
     button.setAttribute("type", "button");
     button.classList.add("task-button");
     if (task.completed) button.classList.add("task-button-completed");
+    button.addEventListener("click", this.#triggerCompleteTaskEvent(task));
     li.appendChild(button);
 
     const contentDiv = document.createElement("div");
@@ -47,6 +50,10 @@ class TaskListView {
     dateProjectDiv.appendChild(projectName);
 
     return li;
+  }
+
+  #triggerCompleteTaskEvent(task) {
+    return () => this.completeTaskEvent.trigger(task);
   }
 
   render({ projects, tasks }) {

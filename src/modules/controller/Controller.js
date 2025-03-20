@@ -1,6 +1,7 @@
 import ViewHandler from "../view/ViewHandler.js";
 import UiStateHandler from "../state/UiStateHandler.js";
 import StorageHandler from "../storage/StorageHandler.js";
+import Task from "../items/Task.js";
 
 class Controller {
   viewHandler = new ViewHandler();
@@ -33,6 +34,9 @@ class Controller {
     );
     this.viewHandler.popup.popupCancelEvent.addListener(
         this.#popupCancelFunction,
+      );
+      this.viewHandler.tasks.completeTaskEvent.addListener(
+        this.#taskCompleteFunction,
       );
   }
 
@@ -75,6 +79,12 @@ class Controller {
 
   #popupCancelFunction = () => {
     this.viewHandler.popup.clear();
+  }
+
+  #taskCompleteFunction = (task) => {
+    const completedTask = new Task(Object.assign({}, task, {completed: !task.completed}));
+    this.storageHandler.set(completedTask);
+    this.#renderTaskList();
   }
 }
 
