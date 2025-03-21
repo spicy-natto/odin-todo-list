@@ -227,7 +227,7 @@ main {
   background: black;
 }
 
-.task-button:hover {
+.task-completed-button:hover {
   background: darkgrey;
 }
 
