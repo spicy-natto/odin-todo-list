@@ -5,6 +5,7 @@ class TaskListView {
   taskList = document.getElementById("tasks");
   completeTaskEvent = new Event();
   editTaskEvent = new Event();
+  deleteTaskEvent = new Event();
 
   #createDom(projects, task) {
     const li = document.createElement("li");
@@ -16,7 +17,10 @@ class TaskListView {
     completedButton.setAttribute("type", "button");
     completedButton.classList.add("task-completed-button");
     if (task.completed) completedButton.classList.add("task-completed");
-    completedButton.addEventListener("click", this.#triggerCompleteTaskEvent(task));
+    completedButton.addEventListener(
+      "click",
+      this.#triggerCompleteTaskEvent(task),
+    );
     li.appendChild(completedButton);
 
     const titleDiv = document.createElement("p");
@@ -26,8 +30,9 @@ class TaskListView {
 
     const exitButton = document.createElement("button");
     exitButton.setAttribute("type", "button");
-    exitButton.classList.add("task-exit-button");
+    exitButton.classList.add("task-delete-button");
     exitButton.textContent = "X";
+    exitButton.addEventListener("click", this.#triggerDeleteTaskEvent(task));
     li.appendChild(exitButton);
 
     const descrDiv = document.createElement("p");
@@ -58,6 +63,10 @@ class TaskListView {
 
   #triggerEditTaskEvent(task) {
     return () => this.editTaskEvent.trigger(task);
+  }
+
+  #triggerDeleteTaskEvent(task) {
+    return () => this.deleteTaskEvent.trigger(task);
   }
 
   render({ projects, tasks }) {

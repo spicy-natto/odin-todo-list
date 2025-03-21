@@ -29,14 +29,15 @@ class Controller {
     this.viewHandler.addTask.addTaskEvent.addListener(
       this.#triggerPopupFunction,
     );
-    this.viewHandler.popup.popupOkEvent.addListener(
-      this.#popupOkFunction,
-    );
+    this.viewHandler.popup.popupOkEvent.addListener(this.#popupOkFunction);
     this.viewHandler.popup.popupCancelEvent.addListener(
-        this.#popupCancelFunction,
-      );
-      this.viewHandler.tasks.completeTaskEvent.addListener(
-        this.#taskCompleteFunction,
+      this.#popupCancelFunction,
+    );
+    this.viewHandler.tasks.completeTaskEvent.addListener(
+      this.#taskCompleteFunction,
+    );
+    this.viewHandler.tasks.deleteTaskEvent.addListener(
+        this.#taskDeleteFunction,
       );
   }
 
@@ -75,17 +76,24 @@ class Controller {
     this.storageHandler.set(task);
     this.viewHandler.popup.clear();
     this.#renderTaskList();
-  }
+  };
 
   #popupCancelFunction = () => {
     this.viewHandler.popup.clear();
-  }
+  };
 
   #taskCompleteFunction = (task) => {
-    const completedTask = new Task(Object.assign({}, task, {completed: !task.completed}));
+    const completedTask = new Task(
+      Object.assign({}, task, { completed: !task.completed }),
+    );
     this.storageHandler.set(completedTask);
     this.#renderTaskList();
-  }
+  };
+
+  #taskDeleteFunction = (task) => {
+    this.storageHandler.delete(task.id);
+    this.#renderTaskList();
+  };
 }
 
 export default Controller;
