@@ -1,4 +1,4 @@
-import { isAfter, isEqual, subDays, addDays } from "date-fns";
+import { isAfter, isBefore, subDays, addDays } from "date-fns";
 import util from "../utilities/utilities.js";
 import Project from "../items/Project.js";
 import SidebarItem from "../items/SidebarItem.js";
@@ -17,7 +17,7 @@ class UiStateHandler {
     new SidebarItem({
       name: "Today",
       svg: today,
-      filterType: "dateEqual",
+      filterType: "dateLessThanOrEqual",
       filterData: new Date(new Date().toDateString()),
     }),
     new SidebarItem({
@@ -46,9 +46,9 @@ class UiStateHandler {
       case "dateEqualOrGreater":
         return (task) =>
           isAfter(task.dueDate, subDays(item.filterData, 1)) && !task.completed;
-      case "dateEqual":
+      case "dateLessThanOrEqual":
         return (task) =>
-          isEqual(task.dueDate, item.filterData) && !task.completed;
+          isBefore(task.dueDate, addDays(item.filterData, 1)) && !task.completed;
       case "completed":
         return (task) => task.completed;
       case "noProject":
