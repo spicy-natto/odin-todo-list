@@ -190,10 +190,13 @@ main {
 }
 
 .task {
-  display: flex;
+  display: grid;
   border-bottom: 1px solid lightgray;
   padding: 0.4rem;
   position: relative;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: min-content minmax(1rem, 1fr) min-content;
+  column-gap: .4rem;
 }
 
 .task:hover {
@@ -204,17 +207,23 @@ main {
   border-top: 1px solid lightgray;
 }
 
-.task-button {
+.task-completed-button {
   align-self: start;
   width: 1.3rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  margin-top: 0.4rem;
   background: none;
   border: 1px solid black;
+  grid-row: 1;
+  grid-column: 1;
+  place-self: center;
 }
 
-.task-button-completed {
+.task-exit-button {
+  place-self: center;
+}
+
+.task-completed {
   background: black;
 }
 
@@ -222,12 +231,12 @@ main {
   background: darkgrey;
 }
 
-.task-content {
-  flex: 1;
-  margin-left: 1rem;
+.task-descr {
+  grid-column: 2 / 4;
 }
 
 .task-date-project {
+  grid-column: 2 / 4;
   display: flex;
   justify-content: space-between;
 }

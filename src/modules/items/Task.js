@@ -9,7 +9,7 @@ class Task {
     this.name = name;
     this.description = description;
     this.priority = priority;
-    this.dueDate = dueDate ?? new Date();
+    this.dueDate = dueDate ? dueDate : new Date(new Date().toDateString());
     this.project = project;
     this.completed = completed ?? false;
   }

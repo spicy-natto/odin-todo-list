@@ -4,40 +4,40 @@ import Event from "../controller/Event.js";
 class TaskListView {
   taskList = document.getElementById("tasks");
   completeTaskEvent = new Event();
+  editTaskEvent = new Event();
 
   #createDom(projects, task) {
     const li = document.createElement("li");
     li.classList.add("task");
     li.setAttribute("tabindex", "0");
+    li.addEventListener("click", this.#triggerEditTaskEvent(task));
 
-    const button = document.createElement("button");
-    button.setAttribute("type", "button");
-    button.classList.add("task-button");
-    if (task.completed) button.classList.add("task-button-completed");
-    button.addEventListener("click", this.#triggerCompleteTaskEvent(task));
-    li.appendChild(button);
+    const completedButton = document.createElement("button");
+    completedButton.setAttribute("type", "button");
+    completedButton.classList.add("task-completed-button");
+    if (task.completed) completedButton.classList.add("task-completed");
+    completedButton.addEventListener("click", this.#triggerCompleteTaskEvent(task));
+    li.appendChild(completedButton);
 
-    const contentDiv = document.createElement("div");
-    contentDiv.classList.add("task-content");
-    li.appendChild(contentDiv);
-
-    const infoDiv = document.createElement("div");
-    infoDiv.classList.add("task-info");
-    contentDiv.appendChild(infoDiv);
-
-    const titleDiv = document.createElement("div");
+    const titleDiv = document.createElement("p");
     titleDiv.classList.add("task-title");
     titleDiv.textContent = task.name;
-    infoDiv.appendChild(titleDiv);
+    li.appendChild(titleDiv);
 
-    const descrDiv = document.createElement("div");
+    const exitButton = document.createElement("button");
+    exitButton.setAttribute("type", "button");
+    exitButton.classList.add("task-exit-button");
+    exitButton.textContent = "X";
+    li.appendChild(exitButton);
+
+    const descrDiv = document.createElement("p");
     descrDiv.classList.add("task-descr");
     descrDiv.textContent = task.description;
-    infoDiv.appendChild(descrDiv);
+    li.appendChild(descrDiv);
 
     const dateProjectDiv = document.createElement("div");
     dateProjectDiv.classList.add("task-date-project");
-    contentDiv.appendChild(dateProjectDiv);
+    li.appendChild(dateProjectDiv);
 
     const date = document.createElement("p");
     date.classList.add("task-date");
@@ -54,6 +54,10 @@ class TaskListView {
 
   #triggerCompleteTaskEvent(task) {
     return () => this.completeTaskEvent.trigger(task);
+  }
+
+  #triggerEditTaskEvent(task) {
+    return () => this.editTaskEvent.trigger(task);
   }
 
   render({ projects, tasks }) {
