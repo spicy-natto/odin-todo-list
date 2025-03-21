@@ -58,7 +58,10 @@ class TaskListView {
   }
 
   #triggerCompleteTaskEvent(task) {
-    return () => this.completeTaskEvent.trigger(task);
+    return (event) => {
+      event.stopPropagation();
+      this.completeTaskEvent.trigger(task);
+    };
   }
 
   #triggerEditTaskEvent(task) {
@@ -66,7 +69,10 @@ class TaskListView {
   }
 
   #triggerDeleteTaskEvent(task) {
-    return () => this.deleteTaskEvent.trigger(task);
+    return (event) => {
+      event.stopPropagation();
+      this.deleteTaskEvent.trigger(task);
+    };
   }
 
   render({ projects, tasks }) {

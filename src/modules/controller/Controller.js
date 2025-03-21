@@ -37,8 +37,11 @@ class Controller {
       this.#taskCompleteFunction,
     );
     this.viewHandler.tasks.deleteTaskEvent.addListener(
-        this.#taskDeleteFunction,
-      );
+      this.#taskDeleteFunction,
+    );
+    this.viewHandler.tasks.editTaskEvent.addListener(
+      this.#triggerPopupFunction,
+    );
   }
 
   #selectFilter() {
