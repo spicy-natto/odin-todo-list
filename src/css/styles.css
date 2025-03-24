@@ -169,6 +169,15 @@ div.logo {
   margin-left: 0.1rem;
 }
 
+.project-delete-button {
+  margin-left: auto;
+  display: none;
+}
+
+.project:hover > .project-delete-button {
+  display: block;
+}
+
 main {
   display: flex;
   justify-content: center;

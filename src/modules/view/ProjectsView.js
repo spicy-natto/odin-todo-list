@@ -21,6 +21,12 @@ class ProjectsView {
     label.textContent = project.name;
     li.appendChild(label);
 
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("project-delete-button");
+    deleteButton.setAttribute("type", "button");
+    deleteButton.textContent = "X";
+    li.appendChild(deleteButton);
+
     return li;
   }
 
