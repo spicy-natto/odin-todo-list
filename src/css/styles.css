@@ -138,7 +138,10 @@ div.logo {
 }
 
 .sidebar-item:hover,
+.sidebar-item:focus,
 .project:hover,
+.project:focus,
+.project:has(.project-delete-button:focus),
 .add-task:hover {
   background: gray;
   opacity: 0.9;
@@ -171,12 +174,14 @@ div.logo {
 
 .project-delete-button {
   margin-left: auto;
-  display: none;
+  opacity: 0;
   pointer-events: auto;
 }
 
-.project:hover > .project-delete-button {
-  display: block;
+.project:hover > .project-delete-button,
+.project:focus > .project-delete-button,
+.project-delete-button:focus {
+  opacity: 1; 
 }
 
 main {

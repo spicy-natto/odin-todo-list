@@ -25,6 +25,7 @@ class ProjectsView {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("project-delete-button");
     deleteButton.setAttribute("type", "button");
+    deleteButton.setAttribute("tabindex", "0");
     deleteButton.textContent = "X";
     deleteButton.addEventListener("click", this.#getDeleteEventFunction(project));
     li.appendChild(deleteButton);
