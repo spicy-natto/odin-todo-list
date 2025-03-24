@@ -17,8 +17,6 @@ function initializeProject(n = 1, itemId) {
     id: itemId,
     name: `test project ${n}`,
     description: `test project description ${n}`,
-    priority: "High",
-    dueDate: new Date(new Date().toDateString()),
   });
 }
 

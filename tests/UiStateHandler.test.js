@@ -80,7 +80,7 @@ describe("CreateTaskViewData", () => {
     let taskViewData = {
       // Remove unused project from array
       projects: util.itemArrayToObject(projects.slice(0, -1)),
-      tasks: [...tasks],
+      tasks: tasks,
     };
 
     expect(uiState.createTaskViewData(projects, tasks)).toEqual(taskViewData);
