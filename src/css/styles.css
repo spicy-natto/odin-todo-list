@@ -172,6 +172,7 @@ div.logo {
 .project-delete-button {
   margin-left: auto;
   display: none;
+  pointer-events: auto;
 }
 
 .project:hover > .project-delete-button {

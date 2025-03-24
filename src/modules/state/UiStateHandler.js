@@ -34,9 +34,9 @@ class UiStateHandler {
     }),
   ];
 
-  filter = UiStateHandler.sidebarItems.find(
-    (sideBarItem) => sideBarItem.name === "Today",
-  );
+  constructor() {
+    this.setDefaultFilter();
+  }
 
   #createFilterFun(item) {
     let filterType = item instanceof Project ? "project" : item.filterType;
@@ -73,6 +73,12 @@ class UiStateHandler {
       projects: projectsFromTasks,
       tasks: filteredTasks,
     };
+  }
+
+  setDefaultFilter() {
+    this.filter = UiStateHandler.sidebarItems.find(
+      (sideBarItem) => sideBarItem.name === "Today",
+    );
   }
 }
 

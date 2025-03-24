@@ -12,7 +12,7 @@ class Controller {
     this.storageHandler.loadFromStorage();
     this.viewHandler.sideBar.render(UiStateHandler.sidebarItems);
     this.viewHandler.addTask.renderButton();
-    this.viewHandler.projects.render(this.storageHandler.projects);
+    this.#renderProjects();
     this.#renderTitle();
     this.#selectFilter();
     this.#renderTaskList();
@@ -22,6 +22,9 @@ class Controller {
   #subscribeToEvents() {
     this.viewHandler.projects.projectSelectEvent.addListener(
       this.#filterSelectFunction,
+    );
+    this.viewHandler.projects.projectDeleteEvent.addListener(
+      this.#projectDeleteFunction,
     );
     this.viewHandler.sideBar.SidebarSelectEvent.addListener(
       this.#filterSelectFunction,
@@ -64,6 +67,10 @@ class Controller {
     this.viewHandler.title.render(this.uiState.filter);
   }
 
+  #renderProjects() {
+    this.viewHandler.projects.render(this.storageHandler.projects);
+  }
+
   #filterSelectFunction = (item) => {
     this.uiState.filter = item;
     this.#renderTaskList();
@@ -95,6 +102,18 @@ class Controller {
 
   #taskDeleteFunction = (task) => {
     this.storageHandler.delete(task.id);
+    this.#renderTaskList();
+  };
+
+  #projectDeleteFunction = (project) => {
+    this.storageHandler.delete(project.id);
+    this.storageHandler.tasks
+      .filter((task) => task.project === project.id)
+      .forEach((task) => this.storageHandler.delete(task.id));
+    if (this.uiState.filter.id === project.id) this.uiState.setDefaultFilter();
+    this.#renderProjects();
+    this.#selectFilter();
+    this.#renderTitle();
     this.#renderTaskList();
   };
 }

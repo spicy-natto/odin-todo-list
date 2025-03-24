@@ -5,6 +5,7 @@ import Event from "../controller/Event.js";
 class ProjectsView {
   projectList = document.getElementById("project-list");
   projectSelectEvent = new Event();
+  projectDeleteEvent = new Event();
 
   #createDom(project) {
     const li = document.createElement("li");
@@ -25,20 +26,28 @@ class ProjectsView {
     deleteButton.classList.add("project-delete-button");
     deleteButton.setAttribute("type", "button");
     deleteButton.textContent = "X";
+    deleteButton.addEventListener("click", this.#getDeleteEventFunction(project));
     li.appendChild(deleteButton);
 
     return li;
   }
 
-  #getTriggerEvent(project) {
+  #getFilterEventFunction(project) {
     return () => this.projectSelectEvent.trigger(project);
+  }
+
+  #getDeleteEventFunction(project) {
+    return (event) => {
+      event.stopPropagation();
+      this.projectDeleteEvent.trigger(project);
+    };
   }
 
   render(projects) {
     this.projectList.innerHTML = "";
     projects.forEach((project) => {
       const projectDom = this.#createDom(project);
-      projectDom.addEventListener("click", this.#getTriggerEvent(project));
+      projectDom.addEventListener("click", this.#getFilterEventFunction(project));
       this.projectList.appendChild(projectDom);
     });
   }
