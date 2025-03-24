@@ -53,7 +53,7 @@ class PopupView {
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
     taskInfoDiv.appendChild(this.#createPrioritySelect(task));
     taskInfoDiv.appendChild(this.#createCheckbox());
-    taskInfoDiv.appendChild(this.#createOkButton());
+    taskInfoDiv.appendChild(this.#createOkButton(task));
     taskInfoDiv.appendChild(this.#createCancelButton());
 
     return taskInfoDiv;
@@ -155,13 +155,13 @@ class PopupView {
     return div;
   }
 
-  #createOkButton() {
+  #createOkButton(task) {
     const button = document.createElement("button");
     button.setAttribute("id", "popup-ok");
     button.setAttribute("type", "button");
     button.textContent = "OK";
     button.classList.add("popup-ok");
-    button.addEventListener("click", this.#okEventFunction);
+    button.addEventListener("click", this.#okEventFunction(task));
 
     return button;
   }
@@ -184,7 +184,8 @@ class PopupView {
     return dimDiv;
   }
 
-  #okEventFunction = () => {
+  #okEventFunction(task) {
+    return () => {
     const name = document.getElementById("popup-name").value;
     const description = document.getElementById("popup-descr").value;
     const dueDate = parse(document.getElementById("task-date").value, 'yyyy-MM-dd', new Date());
@@ -192,7 +193,8 @@ class PopupView {
     const priority = document.getElementById("task-priority-select").value;
     const completed = document.getElementById("task-completed").checked;
 
-    const task = new Task({
+    const newTask = new Task({
+      id: task.id,
       name: name,
       description: description,
       dueDate: dueDate,
@@ -201,8 +203,9 @@ class PopupView {
       completed: completed,
     });
 
-    this.popupOkEvent.trigger(task);
+    this.popupOkEvent.trigger(newTask);
   };
+}
 
   render(item, projects) {
     this.popupAndDim.innerHTML = "";
