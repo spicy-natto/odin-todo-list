@@ -6,6 +6,7 @@ class ProjectsView {
   projectList = document.getElementById("project-list");
   projectSelectEvent = new Event();
   projectDeleteEvent = new Event();
+  projectEditEvent = new Event();
 
   #createDom(project) {
     const li = document.createElement("li");
@@ -21,6 +22,14 @@ class ProjectsView {
     label.classList.add("project-name");
     label.textContent = project.name;
     li.appendChild(label);
+
+    const editButton = document.createElement("button");
+    editButton.classList.add("project-edit-button");
+    editButton.setAttribute("type", "button");
+    editButton.setAttribute("tabindex", "0");
+    editButton.textContent = "E";
+    editButton.addEventListener("click", this.#getEditEventFunction(project));
+    li.appendChild(editButton);
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("project-delete-button");
@@ -41,6 +50,13 @@ class ProjectsView {
     return (event) => {
       event.stopPropagation();
       this.projectDeleteEvent.trigger(project);
+    };
+  }
+
+  #getEditEventFunction(project) {
+    return (event) => {
+      event.stopPropagation();
+      this.projectEditEvent.trigger(project);
     };
   }
 

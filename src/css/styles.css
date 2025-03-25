@@ -172,15 +172,22 @@ div.logo {
   margin-left: 0.1rem;
 }
 
-.project-delete-button {
+.project-edit-button {
   margin-left: auto;
+}
+
+.project-delete-button,
+.project-edit-button {
   opacity: 0;
   pointer-events: auto;
 }
 
 .project:hover > .project-delete-button,
 .project:focus > .project-delete-button,
-.project-delete-button:focus {
+.project:hover > .project-edit-button,
+.project:focus > .project-edit-button,
+.project-delete-button:focus,
+.project-edit-button:focus {
   opacity: 1;
 }
 
