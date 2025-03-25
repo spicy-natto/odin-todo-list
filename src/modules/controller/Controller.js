@@ -26,6 +26,9 @@ class Controller {
     this.viewHandler.projects.projectDeleteEvent.addListener(
       this.#projectDeleteFunction,
     );
+    this.viewHandler.projects.projectEditEvent.addListener(
+      this.#triggerPopupFunction,
+    )
     this.viewHandler.sideBar.SidebarSelectEvent.addListener(
       this.#filterSelectFunction,
     );
@@ -78,14 +81,15 @@ class Controller {
     this.#renderTitle();
   };
 
-  #triggerPopupFunction = (task) => {
-    this.viewHandler.popup.render(task, this.storageHandler.projects);
+  #triggerPopupFunction = (item) => {
+    this.viewHandler.popup.render(item, this.storageHandler.projects);
   };
 
   #popupOkFunction = (task) => {
     this.storageHandler.set(task);
     this.viewHandler.popup.clear();
     this.#renderTaskList();
+    this.#renderProjects();
   };
 
   #popupCancelFunction = () => {

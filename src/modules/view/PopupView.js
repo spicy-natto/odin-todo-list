@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import Task from "../items/Task.js";
 import Event from "../controller/Event.js";
 import { parse } from "date-fns";
+import util from "../utilities/utilities.js";
 
 class PopupView {
   popupAndDim = document.getElementById("popup-and-dim");
@@ -18,6 +19,8 @@ class PopupView {
     popupDiv.appendChild(popupForm);
 
     popupForm.appendChild(this.#createPopupNameAndDescr(item));
+    popupForm.appendChild(this.#createOkButton(item));
+    popupForm.appendChild(this.#createCancelButton());
 
     if (item instanceof Task) {
       popupForm.appendChild(this.#createTaskInfo(item, projects));
@@ -53,8 +56,6 @@ class PopupView {
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
     taskInfoDiv.appendChild(this.#createPrioritySelect(task));
     taskInfoDiv.appendChild(this.#createCheckbox());
-    taskInfoDiv.appendChild(this.#createOkButton(task));
-    taskInfoDiv.appendChild(this.#createCancelButton());
 
     return taskInfoDiv;
   }
@@ -177,35 +178,39 @@ class PopupView {
     return button;
   }
 
-
   #createDimDiv() {
     const dimDiv = document.createElement("div");
     dimDiv.setAttribute("id", "dim-screen");
     return dimDiv;
   }
 
-  #okEventFunction(task) {
+  #okEventFunction(item) {
     return () => {
-    const name = document.getElementById("popup-name").value;
-    const description = document.getElementById("popup-descr").value;
-    const dueDate = parse(document.getElementById("task-date").value, 'yyyy-MM-dd', new Date());
-    const project = document.getElementById("task-proj-select").value;
-    const priority = document.getElementById("task-priority-select").value;
-    const completed = document.getElementById("task-completed").checked;
+      const name = document.getElementById("popup-name")?.value;
+      const description = document.getElementById("popup-descr")?.value;
+      const dueDate = parse(
+        document.getElementById("task-date")?.value ?? new Date().toDateString(),
+        "yyyy-MM-dd",
+        new Date(),
+      );
+      const project = document.getElementById("task-proj-select")?.value;
+      const priority = document.getElementById("task-priority-select")?.value;
+      const completed = document.getElementById("task-completed")?.checked;
 
-    const newTask = new Task({
-      id: task.id,
-      name: name,
-      description: description,
-      dueDate: dueDate,
-      project: project,
-      priority: priority,
-      completed: completed,
-    });
+      const newItem = util.itemFactory({
+        objectType: item.objectType,
+        id: item.id,
+        name: name,
+        description: description,
+        dueDate: dueDate,
+        project: project,
+        priority: priority,
+        completed: completed,
+      });
 
-    this.popupOkEvent.trigger(newTask);
-  };
-}
+      this.popupOkEvent.trigger(newItem);
+    };
+  }
 
   render(item, projects) {
     this.popupAndDim.innerHTML = "";
