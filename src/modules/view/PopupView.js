@@ -19,12 +19,13 @@ class PopupView {
     popupDiv.appendChild(popupForm);
 
     popupForm.appendChild(this.#createPopupNameAndDescr(item));
-    popupForm.appendChild(this.#createOkButton(item));
-    popupForm.appendChild(this.#createCancelButton());
 
     if (item instanceof Task) {
       popupForm.appendChild(this.#createTaskInfo(item, projects));
     }
+
+    popupForm.appendChild(this.#createOkButton(item));
+    popupForm.appendChild(this.#createCancelButton());
 
     return popupDiv;
   }
