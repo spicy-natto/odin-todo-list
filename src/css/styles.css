@@ -181,7 +181,7 @@ div.logo {
 .project:hover > .project-delete-button,
 .project:focus > .project-delete-button,
 .project-delete-button:focus {
-  opacity: 1; 
+  opacity: 1;
 }
 
 main {
@@ -211,7 +211,7 @@ main {
   position: relative;
   grid-template-columns: min-content 1fr min-content;
   grid-template-rows: min-content minmax(1rem, 1fr) min-content;
-  column-gap: .4rem;
+  column-gap: 0.4rem;
 }
 
 .task:hover {
@@ -312,19 +312,19 @@ main {
 .popup-ok,
 .popup-cancel {
   align-self: flex-end;
-  padding: .2rem 1rem;
+  padding: 0.2rem 1rem;
   margin-top: auto;
 }
 
 .popup-task-info > div {
-  margin: .5rem;
+  margin: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .popup-task-info label {
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
 }
 
 #dim-screen {

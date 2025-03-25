@@ -13,7 +13,7 @@ class StorageHandler {
   #saveItemsToStorage() {
     localStorage.setItem(
       StorageHandler.allItemsStorageId,
-      JSON.stringify(this.itemCache.getItems().map((item) => item.id))
+      JSON.stringify(this.itemCache.items.map((item) => item.id))
     );
   }
 
@@ -25,15 +25,15 @@ class StorageHandler {
   }
 
   get items() {
-    return this.itemCache.getItems();
+    return this.itemCache.items;
   }
 
   get tasks() {
-    return this.itemCache.getItems().filter((item) => item instanceof Task);
+    return this.itemCache.items.filter((item) => item instanceof Task);
   }
 
   get projects() {
-    return this.itemCache.getItems().filter((item) => item instanceof Project);
+    return this.itemCache.items.filter((item) => item instanceof Project);
   }
 
 
