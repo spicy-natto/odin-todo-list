@@ -131,7 +131,7 @@ p {
   padding: 0.5rem;
   background-color: var(--amber-100);
   font-size: 1.2rem;
-  box-shadow: 2px 2px 3px lightgrey;
+  box-shadow: 2px 0px 3px lightgrey;
 }
 
 div.logo {
@@ -206,7 +206,9 @@ div.logo {
 .project:hover > .project-edit-button,
 .project:focus > .project-edit-button,
 .project-delete-button:focus,
-.project-edit-button:focus {
+.project-edit-button:focus,
+.project-edit-button:has(+ .project-delete-button:focus),
+.project-edit-button:focus + .project-delete-button {
   opacity: 1;
 }
 
