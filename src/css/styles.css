@@ -157,7 +157,8 @@ div.logo {
 .sidebar-item:focus,
 .project:hover,
 .project:focus,
-.project:has(.project-delete-button:focus),
+.project:has(.project-delete-button:focus-visible),
+.project:has(.project-edit-button:focus-visible),
 .add-task:hover {
   background: var(--amber-100-darker);
 }
@@ -215,13 +216,13 @@ div.logo {
 }
 
 .project:hover > .project-delete-button,
-.project:focus > .project-delete-button,
+.project:focus-visible > .project-delete-button,
 .project:hover > .project-edit-button,
-.project:focus > .project-edit-button,
-.project-delete-button:focus,
-.project-edit-button:focus,
-.project-edit-button:has(+ .project-delete-button:focus),
-.project-edit-button:focus + .project-delete-button {
+.project:focus-visible > .project-edit-button,
+.project-delete-button:focus-visible,
+.project-edit-button:focus-visible,
+.project-edit-button:has(+ .project-delete-button:focus-visible),
+.project-edit-button:focus-visible + .project-delete-button {
   opacity: 1;
 }
 
