@@ -1,5 +1,7 @@
 import util from "../utilities/utilities.js";
 import projectIcon from "../../images/pound.svg";
+import deleteIcon from "../../images/delete-trashcan.svg";
+import editIcon from "../../images/edit-square-pencil.svg";
 import Event from "../controller/Event.js";
 
 class ProjectsView {
@@ -27,7 +29,8 @@ class ProjectsView {
     editButton.classList.add("project-edit-button");
     editButton.setAttribute("type", "button");
     editButton.setAttribute("tabindex", "0");
-    editButton.textContent = "E";
+    const editSVG = util.htmlToNode(editIcon);
+    editButton.appendChild(editSVG);
     editButton.addEventListener("click", this.#getEditEventFunction(project));
     li.appendChild(editButton);
 
@@ -35,7 +38,8 @@ class ProjectsView {
     deleteButton.classList.add("project-delete-button");
     deleteButton.setAttribute("type", "button");
     deleteButton.setAttribute("tabindex", "0");
-    deleteButton.textContent = "X";
+    const deleteSVG = util.htmlToNode(deleteIcon);
+    deleteButton.appendChild(deleteSVG);
     deleteButton.addEventListener("click", this.#getDeleteEventFunction(project));
     li.appendChild(deleteButton);
 

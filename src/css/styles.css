@@ -103,6 +103,7 @@ textarea:not([rows]) {
   --amber-100-darker: oklch(0.92 0.022 95.277);
   --amber-200: oklch(0.901 0.076 70.697);
   --amber-200-darker: oklch(0.834 0.076 70.697);
+  --amber-800: oklch(0.473 0.137 46.201);
   --orange-100: oklch(0.954 0.038 75.164);
   --orange-200: oklch(0.901 0.076 70.697);
 }
@@ -195,10 +196,22 @@ div.logo {
   margin-left: auto;
 }
 
+.project-delete-button {
+  margin-left: 0.1rem;
+}
+
 .project-delete-button,
 .project-edit-button {
   opacity: 0;
   pointer-events: auto;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.project-delete-button:hover svg,
+.project-edit-button:hover svg {
+  fill: var(--amber-800);
 }
 
 .project:hover > .project-delete-button,
