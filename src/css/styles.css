@@ -101,12 +101,16 @@ textarea:not([rows]) {
 :root {
   --amber-100: oklch(0.987 0.022 95.277);
   --amber-100-darker: oklch(0.92 0.022 95.277);
+  --amber-200: oklch(0.901 0.076 70.697);
+  --amber-200-darker: oklch(0.834 0.076 70.697);
   --orange-100: oklch(0.954 0.038 75.164);
-  --orange-200: oklch(0.901 0.076 70.697); 
+  --orange-200: oklch(0.901 0.076 70.697);
 }
 
 body {
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:
+    system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   display: grid;
   grid-template-columns: 18rem 1fr;
   margin: 0;
@@ -127,6 +131,7 @@ p {
   padding: 0.5rem;
   background-color: var(--amber-100);
   font-size: 1.2rem;
+  box-shadow: 2px 2px 3px lightgrey;
 }
 
 div.logo {
@@ -144,7 +149,7 @@ div.logo {
 .project {
   display: flex;
   align-items: center;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
 
 .sidebar-item:hover,
@@ -152,9 +157,17 @@ div.logo {
 .project:hover,
 .project:focus,
 .project:has(.project-delete-button:focus),
-.add-task:hover,
-.sidebar-selected {
+.add-task:hover {
   background: var(--amber-100-darker);
+}
+
+.sidebar-selected,
+.sidebar-selected:focus {
+  background-color: var(--amber-200);
+}
+
+.sidebar-selected:hover {
+  background-color: var(--amber-200-darker);
 }
 
 .sidebar-items > li,
@@ -286,7 +299,7 @@ main {
   transform: translate(-50%, -50%);
   width: 30rem;
   aspect-ratio: 1;
-  background-color: var(--orange-100);
+  background-color: var(--amber-100);
   border-radius: 1rem;
   z-index: 2;
   display: flex;
