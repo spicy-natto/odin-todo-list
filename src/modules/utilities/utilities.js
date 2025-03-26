@@ -1,3 +1,7 @@
+import Project from "../items/Project.js";
+import Task from "../items/Task.js";
+import SidebarItem from "../items/SidebarItem.js";
+
 function idMatches(item) {
   return (x) => x.id === item.id;
 }
@@ -10,7 +14,7 @@ function itemArraysAreEqual(arr1, arr2) {
   arr1.sort(compareItemsById);
   arr2.sort(compareItemsById);
   return (
-    arr1.length === arr2.length && arr1.every((e, i) => arr2[i].id === e.id)
+    arr1.length === arr2.length && arr1.every((e, i) => arr2[i].equals(e))
   );
 }
 
@@ -19,6 +23,13 @@ function itemArrayToObject(itemArray) {
     itemsObj[item.id] = item;
     return itemsObj;
   }, {});
+}
+
+function itemFactory(item) {
+  if (item.objectType === "Project") return new Project(item);
+  if (item.objectType === "Task") return new Task(item);
+  if (item.objectType === "SidebarItem") return new SidebarItem(item);
+  throw new Error("Object type is not recognized");
 }
 
 // Taken from stack overflow 
@@ -45,4 +56,5 @@ export default {
   itemArraysAreEqual,
   itemArrayToObject,
   htmlToNode,
+  itemFactory,
 };

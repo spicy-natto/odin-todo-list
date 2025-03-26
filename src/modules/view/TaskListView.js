@@ -1,50 +1,78 @@
 import { format } from "date-fns";
+import Event from "../controller/Event.js";
 
 class TaskListView {
   taskList = document.getElementById("tasks");
+  completeTaskEvent = new Event();
+  editTaskEvent = new Event();
+  deleteTaskEvent = new Event();
 
-  #createDom(projects, { name, description, dueDate, project }) {
+  #createDom(projects, task) {
     const li = document.createElement("li");
     li.classList.add("task");
+    li.setAttribute("tabindex", "0");
+    li.addEventListener("click", this.#triggerEditTaskEvent(task));
 
-    const button = document.createElement("button");
-    button.setAttribute("type", "button");
-    button.classList.add("task-button");
-    li.appendChild(button);
+    const completedButton = document.createElement("button");
+    completedButton.setAttribute("type", "button");
+    completedButton.classList.add("task-completed-button");
+    if (task.completed) completedButton.classList.add("task-completed");
+    completedButton.addEventListener(
+      "click",
+      this.#triggerCompleteTaskEvent(task),
+    );
+    li.appendChild(completedButton);
 
-    const contentDiv = document.createElement("div");
-    contentDiv.classList.add("task-content");
-    li.appendChild(contentDiv);
-
-    const infoDiv = document.createElement("div");
-    infoDiv.classList.add("task-info");
-    contentDiv.appendChild(infoDiv);
-
-    const titleDiv = document.createElement("div");
+    const titleDiv = document.createElement("p");
     titleDiv.classList.add("task-title");
-    titleDiv.textContent = name;
-    infoDiv.appendChild(titleDiv);
+    titleDiv.textContent = task.name;
+    li.appendChild(titleDiv);
 
-    const descrDiv = document.createElement("div");
+    const exitButton = document.createElement("button");
+    exitButton.setAttribute("type", "button");
+    exitButton.classList.add("task-delete-button");
+    exitButton.textContent = "X";
+    exitButton.addEventListener("click", this.#triggerDeleteTaskEvent(task));
+    li.appendChild(exitButton);
+
+    const descrDiv = document.createElement("p");
     descrDiv.classList.add("task-descr");
-    descrDiv.textContent = description;
-    infoDiv.appendChild(descrDiv);
+    descrDiv.textContent = task.description;
+    li.appendChild(descrDiv);
 
     const dateProjectDiv = document.createElement("div");
     dateProjectDiv.classList.add("task-date-project");
-    contentDiv.appendChild(dateProjectDiv);
+    li.appendChild(dateProjectDiv);
 
     const date = document.createElement("p");
     date.classList.add("task-date");
-    date.textContent = format(dueDate, "MMM d");
+    date.textContent = format(task.dueDate, "MMM d");
     dateProjectDiv.appendChild(date);
 
     const projectName = document.createElement("p");
     projectName.classList.add("task-project");
-    projectName.textContent = projects[project].name;
+    projectName.textContent = projects[task.project]?.name;
     dateProjectDiv.appendChild(projectName);
 
     return li;
+  }
+
+  #triggerCompleteTaskEvent(task) {
+    return (event) => {
+      event.stopPropagation();
+      this.completeTaskEvent.trigger(task);
+    };
+  }
+
+  #triggerEditTaskEvent(task) {
+    return () => this.editTaskEvent.trigger(task);
+  }
+
+  #triggerDeleteTaskEvent(task) {
+    return (event) => {
+      event.stopPropagation();
+      this.deleteTaskEvent.trigger(task);
+    };
   }
 
   render({ projects, tasks }) {

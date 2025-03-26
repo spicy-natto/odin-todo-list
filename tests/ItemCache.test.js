@@ -22,7 +22,7 @@ describe("set", () => {
 
 describe("getItems", () => {
   test("returns collection of all added items", () => {
-    let allItems = itemCache.getItems();
+    let allItems = itemCache.items;
     expect(util.itemArraysAreEqual(itemArray, allItems)).toBe(true);
   });
 });
@@ -30,7 +30,7 @@ describe("getItems", () => {
 describe("delete", () => {
   test("removes item from itemCache", () => {
     itemCache.delete(itemArray[0].id);
-    let allItemsAfterDelete = itemCache.getItems();
+    let allItemsAfterDelete = itemCache.items;
 
     // Remove first element from itemArray so that it will match cache
     // after deleting first Task from cache

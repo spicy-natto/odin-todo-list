@@ -1,8 +1,11 @@
 import util from "../utilities/utilities.js";
 import addIcon from "../../images/plus-circle.svg";
+import Task from "../items/Task.js";
+import Event from "../controller/Event.js";
 
 class AddTaskView {
   addDiv = document.getElementById("add-task");
+  addTaskEvent = new Event();
 
   renderButton() {
     const icon = util.htmlToNode(addIcon);
@@ -15,7 +18,12 @@ class AddTaskView {
     this.addDiv.innerHTML = "";
     this.addDiv.appendChild(icon);
     this.addDiv.appendChild(label);
+
+    this.addDiv.addEventListener("click", this.#triggerEvent);
   }
+
+  #triggerEvent = () =>
+    this.addTaskEvent.trigger(new Task({ name: "New Task", description: "" }));
 }
 
 export default AddTaskView;

@@ -138,15 +138,21 @@ div.logo {
 }
 
 .sidebar-item:hover,
+.sidebar-item:focus,
 .project:hover,
+.project:focus,
+.project:has(.project-delete-button:focus),
 .add-task:hover {
   background: gray;
-  opacity: 0.9;
 }
 
 .sidebar-items > li,
 .project-list > li {
   margin: 0.2rem 0 0.2rem 0;
+}
+
+.sidebar-selected {
+  background: lightpink;
 }
 
 .sidebar-icon {
@@ -163,6 +169,25 @@ div.logo {
 
 .project-name {
   margin-left: 0.1rem;
+}
+
+.project-edit-button {
+  margin-left: auto;
+}
+
+.project-delete-button,
+.project-edit-button {
+  opacity: 0;
+  pointer-events: auto;
+}
+
+.project:hover > .project-delete-button,
+.project:focus > .project-delete-button,
+.project:hover > .project-edit-button,
+.project:focus > .project-edit-button,
+.project-delete-button:focus,
+.project-edit-button:focus {
+  opacity: 1;
 }
 
 main {
@@ -186,10 +211,13 @@ main {
 }
 
 .task {
-  display: flex;
+  display: grid;
   border-bottom: 1px solid lightgray;
   padding: 0.4rem;
   position: relative;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: min-content minmax(1rem, 1fr) min-content;
+  column-gap: 0.4rem;
 }
 
 .task:hover {
@@ -200,26 +228,37 @@ main {
   border-top: 1px solid lightgray;
 }
 
-.task-button {
+.task-completed-button {
   align-self: start;
   width: 1.3rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  margin-top: 0.4rem;
   background: none;
   border: 1px solid black;
+  grid-row: 1;
+  grid-column: 1;
+  place-self: center;
 }
 
-.task-button:hover {
-  background: lightgray;
+.task-delete-button,
+.task-completed-button {
+  place-self: center;
 }
 
-.task-content {
-  flex: 1;
-  margin-left: 1rem;
+.task-completed {
+  background: black;
+}
+
+.task-completed-button:hover {
+  background: darkgrey;
+}
+
+.task-descr {
+  grid-column: 2 / 4;
 }
 
 .task-date-project {
+  grid-column: 2 / 4;
   display: flex;
   justify-content: space-between;
 }
@@ -277,32 +316,30 @@ main {
   margin-top: 1rem;
 }
 
-.popup-ok {
+.popup-ok,
+.popup-cancel {
   align-self: flex-end;
-  padding: .2rem 1rem;
+  padding: 0.2rem 1rem;
   margin-top: auto;
 }
 
 .popup-task-info > div {
-  margin: .5rem;
+  margin: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .popup-task-info label {
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
 }
 
 #dim-screen {
   position: fixed;
-  padding: 0;
-  margin: 0;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
   pointer-events: auto;
 }

@@ -1,18 +1,20 @@
 import "./css/styles.css";
-import UiStateHandler from "./modules/state/UiStateHandler.js";
-import ViewHandler from "./modules/view/ViewHandler.js";
 import testUtil from "./modules/utilities/testUtilities.js";
+import StorageHandler from "./modules/storage/StorageHandler.js";
 import { addDays } from "date-fns";
+import Controller from "./modules/controller/Controller.js";
 
-const uiState = new UiStateHandler();
+localStorage.clear();
+const storageHandler = new StorageHandler();
 
 //projects[3] is unused by tasks
 const projects = testUtil.initProjectArray(4);
 
 projects[0].dueDate = addDays(projects[0].dueDate, -1);
 projects[2].dueDate = addDays(projects[2].dueDate, 2);
+projects.forEach((project) => storageHandler.set(project));
 
-const tasks = testUtil.initTaskArray(6);
+const tasks = testUtil.initTaskArray(7);
 tasks[0].project = projects[0].id;
 tasks[0].dueDate = addDays(tasks[0].dueDate, -1);
 tasks[1].project = projects[0].id;
@@ -24,12 +26,10 @@ tasks[4].project = projects[2].id;
 tasks[4].dueDate = addDays(tasks[4].dueDate, 3);
 tasks[5].project = projects[2].id;
 tasks[5].dueDate = addDays(tasks[5].dueDate, 4);
+tasks[5].completed = true;
+tasks[6].dueDate = addDays(tasks[5].dueDate, 4);
+tasks[6].project = undefined;
+tasks.forEach((tasks) => storageHandler.set(tasks));
 
-const viewHandler = new ViewHandler();
-
-viewHandler.sideBar.render(UiStateHandler.sideBarItems);
-viewHandler.addTask.renderButton();
-viewHandler.projects.render(projects);
-viewHandler.title.render(uiState.filter);
-viewHandler.tasks.render(uiState.createTaskViewData(projects, tasks));
-viewHandler.popup.render(tasks[0], projects);
+const controller = new Controller();
+controller.init();
