@@ -135,12 +135,15 @@ p {
   box-shadow: 2px 0px 3px lightgrey;
 }
 
-div.logo {
+div.logo-container {
   width: 5rem;
-  background: gold;
-  margin-bottom: 1rem;
 }
 
+.logo {
+  min-width: 6rem;
+  min-height: 6rem;
+  aspect-ratio: 1;
+}
 .add-task {
   margin-bottom: 0.2rem;
 }

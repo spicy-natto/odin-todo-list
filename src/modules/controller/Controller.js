@@ -10,6 +10,7 @@ class Controller {
 
   init() {
     this.storageHandler.loadFromStorage();
+    this.viewHandler.logo.render();
     this.viewHandler.sideBar.render(UiStateHandler.sidebarItems);
     this.viewHandler.addTask.renderButton();
     this.#renderProjects();
