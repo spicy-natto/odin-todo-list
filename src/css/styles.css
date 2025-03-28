@@ -150,7 +150,8 @@ div.logo-container {
 
 .sidebar-item,
 .add-task,
-.project {
+.project,
+.project-add {
   display: flex;
   align-items: center;
   border-radius: 0.3rem;
@@ -184,12 +185,23 @@ div.logo-container {
   width: 1.5rem;
 }
 
-.sidebar-label {
+.add-task-text,
+.add-project-text {
+  font-weight: 600;
+}
+
+.sidebar-label,
+.add-task-text,
+.add-project-text {
   margin-left: 0.2rem;
 }
 
 .project-icon {
   width: 1rem;
+}
+
+.project-add-icon {
+  width: 1.5rem;
 }
 
 .project-name {

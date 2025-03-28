@@ -1,4 +1,5 @@
 import util from "../utilities/utilities.js";
+import addIcon from "../../images/plus-circle.svg";
 import projectIcon from "../../images/pound.svg";
 import deleteIcon from "../../images/delete-trashcan.svg";
 import editIcon from "../../images/edit-square-pencil.svg";
@@ -9,6 +10,7 @@ class ProjectsView {
   projectSelectEvent = new Event();
   projectDeleteEvent = new Event();
   projectEditEvent = new Event();
+  projectAddEvent = new Event();
 
   #createDom(project) {
     const li = document.createElement("li");
@@ -40,11 +42,33 @@ class ProjectsView {
     deleteButton.setAttribute("tabindex", "0");
     const deleteSVG = util.htmlToNode(deleteIcon);
     deleteButton.appendChild(deleteSVG);
-    deleteButton.addEventListener("click", this.#getDeleteEventFunction(project));
+    deleteButton.addEventListener(
+      "click",
+      this.#getDeleteEventFunction(project),
+    );
     li.appendChild(deleteButton);
 
     return li;
   }
+
+  #createProjectButton() {
+    const addLi = document.createElement("li");
+    addLi.classList.add("project-add");
+
+    const icon = util.htmlToNode(addIcon);
+    icon.classList.add("project-add-icon");
+    addLi.appendChild(icon);
+
+    const label = document.createElement("div");
+    label.textContent = "Add Project";
+    label.classList.add("add-project-text");
+    addLi.appendChild(label);
+
+    addLi.addEventListener("click", this.#addProjectEvent);
+    return addLi;
+  }
+
+  #addProjectEvent = () => this.projectAddEvent.trigger();
 
   #getFilterEventFunction(project) {
     return () => this.projectSelectEvent.trigger(project);
@@ -66,9 +90,15 @@ class ProjectsView {
 
   render(projects) {
     this.projectList.innerHTML = "";
+
+    this.projectList.appendChild(this.#createProjectButton());
+    
     projects.forEach((project) => {
       const projectDom = this.#createDom(project);
-      projectDom.addEventListener("click", this.#getFilterEventFunction(project));
+      projectDom.addEventListener(
+        "click",
+        this.#getFilterEventFunction(project),
+      );
       this.projectList.appendChild(projectDom);
     });
   }
