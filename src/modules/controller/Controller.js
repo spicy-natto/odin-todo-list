@@ -29,7 +29,10 @@ class Controller {
     );
     this.viewHandler.projects.projectEditEvent.addListener(
       this.#triggerPopupFunction,
-    )
+    );
+    this.viewHandler.projects.projectAddEvent.addListener(
+      this.#triggerPopupFunction,
+    );
     this.viewHandler.sideBar.SidebarSelectEvent.addListener(
       this.#filterSelectFunction,
     );

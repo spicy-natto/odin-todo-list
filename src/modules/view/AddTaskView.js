@@ -4,7 +4,7 @@ import Task from "../items/Task.js";
 import Event from "../controller/Event.js";
 
 class AddTaskView {
-  addDiv = document.getElementById("add-task");
+  addDiv = document.getElementById("task-add");
   addTaskEvent = new Event();
 
   renderButton() {
@@ -13,7 +13,7 @@ class AddTaskView {
 
     const label = document.createElement("div");
     label.textContent = "Add Task";
-    label.classList.add("add-task-text");
+    label.classList.add("task-add-text");
 
     this.addDiv.innerHTML = "";
     this.addDiv.appendChild(icon);

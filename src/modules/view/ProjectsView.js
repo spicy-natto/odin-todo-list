@@ -4,6 +4,7 @@ import projectIcon from "../../images/pound.svg";
 import deleteIcon from "../../images/delete-trashcan.svg";
 import editIcon from "../../images/edit-square-pencil.svg";
 import Event from "../controller/Event.js";
+import Project from "../items/Project.js";
 
 class ProjectsView {
   projectList = document.getElementById("project-list");
@@ -61,14 +62,17 @@ class ProjectsView {
 
     const label = document.createElement("div");
     label.textContent = "Add Project";
-    label.classList.add("add-project-text");
+    label.classList.add("project-add-text");
     addLi.appendChild(label);
 
     addLi.addEventListener("click", this.#addProjectEvent);
     return addLi;
   }
 
-  #addProjectEvent = () => this.projectAddEvent.trigger();
+  #addProjectEvent = () =>
+    this.projectAddEvent.trigger(
+      new Project({ name: "New Project", description: "" })
+    );
 
   #getFilterEventFunction(project) {
     return () => this.projectSelectEvent.trigger(project);
@@ -92,7 +96,7 @@ class ProjectsView {
     this.projectList.innerHTML = "";
 
     this.projectList.appendChild(this.#createProjectButton());
-    
+
     projects.forEach((project) => {
       const projectDom = this.#createDom(project);
       projectDom.addEventListener(

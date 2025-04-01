@@ -144,12 +144,12 @@ div.logo-container {
   min-height: 6rem;
   aspect-ratio: 1;
 }
-.add-task {
+.task-add {
   margin-bottom: 0.2rem;
 }
 
 .sidebar-item,
-.add-task,
+.task-add,
 .project,
 .project-add {
   display: flex;
@@ -163,7 +163,8 @@ div.logo-container {
 .project:focus,
 .project:has(.project-delete-button:focus-visible),
 .project:has(.project-edit-button:focus-visible),
-.add-task:hover {
+.task-add:hover,
+.project-add:hover {
   background: var(--amber-100-darker);
 }
 
@@ -185,14 +186,14 @@ div.logo-container {
   width: 1.5rem;
 }
 
-.add-task-text,
-.add-project-text {
+.task-add-text,
+.project-add-text {
   font-weight: 600;
 }
 
 .sidebar-label,
-.add-task-text,
-.add-project-text {
+.task-add-text,
+.project-text {
   margin-left: 0.2rem;
 }
 
@@ -261,22 +262,29 @@ main {
   margin-bottom: 1rem;
 }
 
+.tasks {
+  background-color: var(--orange-100);
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 1px solid lightgrey;
+  min-width: 100%
+}
+
 .task {
   display: grid;
-  border-bottom: 1px solid lightgray;
+  border-radius: 1rem;
+  border: 1px solid lightgrey;
+  background-color: var(--amber-100);
   padding: 0.4rem;
   position: relative;
   grid-template-columns: min-content 1fr min-content;
   grid-template-rows: min-content minmax(1rem, 1fr) min-content;
   column-gap: 0.4rem;
+  margin-bottom: .2rem;
 }
 
 .task:hover {
-  background: lightgrey;
-}
-
-.tasks > li:first-child {
-  border-top: 1px solid lightgray;
+  background: var(--amber-100);
 }
 
 .task-completed-button {
