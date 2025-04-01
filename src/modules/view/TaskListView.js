@@ -1,5 +1,7 @@
 import { format } from "date-fns";
+import util from "../utilities/utilities.js";
 import Event from "../controller/Event.js";
+import deleteIcon from "../../images/delete-trashcan.svg";
 
 class TaskListView {
   taskList = document.getElementById("tasks");
@@ -31,7 +33,8 @@ class TaskListView {
     const exitButton = document.createElement("button");
     exitButton.setAttribute("type", "button");
     exitButton.classList.add("task-delete-button");
-    exitButton.textContent = "X";
+    const deleteSVG = util.htmlToNode(deleteIcon);
+    exitButton.appendChild(deleteSVG);
     exitButton.addEventListener("click", this.#triggerDeleteTaskEvent(task));
     li.appendChild(exitButton);
 
