@@ -32,8 +32,8 @@ class ProjectsView {
     editButton.classList.add("project-edit-button");
     editButton.setAttribute("type", "button");
     editButton.setAttribute("tabindex", "0");
-    const editSvg = util.htmlToNode(editIcon);
-    editButton.appendChild(editSvg);
+    const editSVG = util.htmlToNode(editIcon);
+    editButton.appendChild(editSVG);
     editButton.addEventListener("click", this.#getEditEventFunction(project));
     li.appendChild(editButton);
 
@@ -41,8 +41,8 @@ class ProjectsView {
     deleteButton.classList.add("project-delete-button");
     deleteButton.setAttribute("type", "button");
     deleteButton.setAttribute("tabindex", "0");
-    const deleteSvg = util.htmlToNode(deleteIcon);
-    deleteButton.appendChild(deleteSvg);
+    const deleteSVG = util.htmlToNode(deleteIcon);
+    deleteButton.appendChild(deleteSVG);
     deleteButton.addEventListener(
       "click",
       this.#getDeleteEventFunction(project),

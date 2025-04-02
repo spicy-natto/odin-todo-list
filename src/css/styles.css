@@ -330,12 +330,10 @@ main {
 .task-completed svg,
 .task-completed-button:hover svg {
   opacity: 1;
-  transition: all 0.5s;
 }
 
 .task-completed:hover svg {
   opacity: 0;
-  transition: all 0.5s;
 }
 
 .task-delete-button,
