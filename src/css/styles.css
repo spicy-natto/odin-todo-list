@@ -417,7 +417,7 @@ main {
   font-weight: 800;
   padding: 0 .2rem;
   border: 1px solid var(--amber-100);
-  border-radius: .2rem;
+  border-radius: .3rem;
   background: none;
   margin-bottom: 1rem;
 }
@@ -432,7 +432,7 @@ main {
   margin-top: 0.2rem;
   resize: none;
   border: 1px solid var(--gray);
-  border-radius: .2rem;
+  border-radius: .3rem;
   padding: .4rem;
 }
 
@@ -443,11 +443,24 @@ main {
   margin-top: 1rem;
 }
 
+.popup-ok-cancel {
+  align-self: flex-end;
+}
+
 .popup-ok,
 .popup-cancel {
-  align-self: flex-end;
+  background: var(--amber-200);
   padding: 0.2rem 1rem;
-  margin-top: auto;
+  border: 1px solid var(--gray);
+  border-radius: .3rem;
+  margin: 2rem .2rem 0 .2rem;
+}
+
+.popup-ok:hover,
+.popup-cancel:hover,
+.popup-ok:focus,
+.popup-cancel:focus  {
+  background: var(--orange-100);
 }
 
 .popup-task-info > div {

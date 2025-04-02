@@ -24,8 +24,11 @@ class PopupView {
       popupForm.appendChild(this.#createTaskInfo(item, projects));
     }
 
-    popupForm.appendChild(this.#createOkButton(item));
-    popupForm.appendChild(this.#createCancelButton());
+    const okCancelDiv = document.createElement("div");
+    okCancelDiv.classList.add("popup-ok-cancel");
+    okCancelDiv.appendChild(this.#createOkButton(item));
+    okCancelDiv.appendChild(this.#createCancelButton());
+    popupForm.appendChild(okCancelDiv);
 
     return popupDiv;
   }
