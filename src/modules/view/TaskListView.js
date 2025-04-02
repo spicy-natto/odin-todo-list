@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import util from "../utilities/utilities.js";
 import Event from "../controller/Event.js";
 import deleteIcon from "../../images/delete-trashcan.svg";
+import completeIcon from "../../images/check.svg";
 
 class TaskListView {
   taskList = document.getElementById("tasks");
@@ -18,6 +19,8 @@ class TaskListView {
     const completedButton = document.createElement("button");
     completedButton.setAttribute("type", "button");
     completedButton.classList.add("task-completed-button");
+    const completeSvg = util.htmlToNode(completeIcon);
+    completedButton.appendChild(completeSvg);
     if (task.completed) completedButton.classList.add("task-completed");
     completedButton.addEventListener(
       "click",

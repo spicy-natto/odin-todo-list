@@ -104,6 +104,7 @@ textarea:not([rows]) {
   --amber-200: oklch(0.901 0.076 70.697);
   --amber-200-darker: oklch(0.834 0.076 70.697);
   --amber-800: oklch(0.473 0.137 46.201);
+  --neutral-700: oklch(37.1% 0 0);
   --orange-100: oklch(0.954 0.038 75.164);
   --orange-200: oklch(0.901 0.076 70.697);
   --yellow-100: oklch(0.973 0.071 103.193);
@@ -224,7 +225,7 @@ div.logo-container {
   pointer-events: auto;
   background: none;
   border: none;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   padding: 0;
 }
 
@@ -270,13 +271,12 @@ main {
   padding: 1rem;
   border-radius: 2rem;
   border: 1px solid lightgrey;
-  min-width: 100%
+  min-width: 100%;
 }
 
 .tasks:empty {
   background: none;
   border: none;
-  min-width: 100%
 }
 
 .task {
@@ -289,7 +289,7 @@ main {
   grid-template-columns: min-content 1fr min-content;
   grid-template-rows: min-content minmax(1rem, 1fr) min-content;
   column-gap: 0.4rem;
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
 }
 
 .task:hover {
@@ -306,6 +306,36 @@ main {
   grid-row: 1;
   grid-column: 1;
   place-self: center;
+  padding: 0;
+}
+
+.task-completed-button:hover,
+.task-completed {
+  border: 1px solid black;
+  transition: all 0.5s;
+}
+
+.task-completed:hover {
+  border: 1px solid darkgray;
+  transition: all 0.5s;
+}
+
+.task-completed-button svg {
+  max-width: 90%;
+  transform: translate(0, -0.1rem);
+  fill: var(--neutral-700);
+  opacity: 0;
+}
+
+.task-completed svg,
+.task-completed-button:hover svg {
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.task-completed:hover svg {
+  opacity: 0;
+  transition: all 0.5s;
 }
 
 .task-delete-button,
@@ -316,19 +346,11 @@ main {
 .task-delete-button {
   background: none;
   border: none;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
 }
 
 .task-delete-button:hover svg {
   fill: var(--amber-800);
-}
-
-.task-completed {
-  background: black;
-}
-
-.task-completed-button:hover {
-  background: darkgrey;
 }
 
 .task-descr {
