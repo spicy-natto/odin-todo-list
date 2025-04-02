@@ -56,7 +56,6 @@ class PopupView {
     taskInfoDiv.appendChild(this.#createTaskDate(task));
     taskInfoDiv.appendChild(this.#createProjectSelect(task, projects));
     taskInfoDiv.appendChild(this.#createPrioritySelect(task));
-    taskInfoDiv.appendChild(this.#createCheckbox());
 
     return taskInfoDiv;
   }
@@ -139,24 +138,6 @@ class PopupView {
     return option;
   }
 
-  #createCheckbox() {
-    const div = document.createElement("div");
-    const label = document.createElement("label");
-    label.setAttribute("for", "task-completed-select");
-    label.classList.add("task-priority-label");
-    label.textContent = "Completed:";
-    div.appendChild(label);
-
-    const input = document.createElement("input");
-    input.setAttribute("type", "checkbox");
-    input.setAttribute("name", "task-completed");
-    input.setAttribute("id", "task-completed");
-    input.classList.add("popup-task-completed");
-    div.appendChild(input);
-
-    return div;
-  }
-
   #createOkButton(task) {
     const button = document.createElement("button");
     button.setAttribute("id", "popup-ok");
@@ -196,7 +177,6 @@ class PopupView {
       );
       const project = document.getElementById("task-proj-select")?.value;
       const priority = document.getElementById("task-priority-select")?.value;
-      const completed = document.getElementById("task-completed")?.checked;
 
       const newItem = util.itemFactory({
         objectType: item.objectType,
@@ -206,7 +186,7 @@ class PopupView {
         dueDate: dueDate,
         project: project,
         priority: priority,
-        completed: completed,
+        completed: false,
       });
 
       this.popupOkEvent.trigger(newItem);

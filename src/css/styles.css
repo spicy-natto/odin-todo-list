@@ -104,6 +104,8 @@ textarea:not([rows]) {
   --amber-200: oklch(0.901 0.076 70.697);
   --amber-200-darker: oklch(0.834 0.076 70.697);
   --amber-800: oklch(0.473 0.137 46.201);
+  --amber-950: oklch(27.9% 0.077 45.635);
+  --gray: darkgray;
   --neutral-700: oklch(37.1% 0 0);
   --orange-100: oklch(0.954 0.038 75.164);
   --orange-200: oklch(0.901 0.076 70.697);
@@ -288,7 +290,7 @@ main {
   position: relative;
   grid-template-columns: min-content 1fr min-content;
   grid-template-rows: min-content minmax(1rem, 1fr) min-content;
-  column-gap: 0.4rem;
+  column-gap: 0.6rem;
   margin-bottom: 0.2rem;
 }
 
@@ -296,28 +298,28 @@ main {
   background: var(--yellow-100);
 }
 
-.task-completed-button {
+.task-completed-button,
+.task-completed:hover {
   align-self: start;
   width: 1.3rem;
   aspect-ratio: 1;
   border-radius: 50%;
   background: none;
-  border: 1px solid darkgray;
+  border: 1px solid var(--gray);
   grid-row: 1;
   grid-column: 1;
   place-self: center;
   padding: 0;
+  transition: all 0.5s;
 }
 
 .task-completed-button:hover,
 .task-completed {
   border: 1px solid black;
-  transition: all 0.5s;
 }
 
 .task-completed:hover {
-  border: 1px solid darkgray;
-  transition: all 0.5s;
+  border: 1px solid var(--gray);
 }
 
 .task-completed-button svg {
@@ -351,6 +353,11 @@ main {
   fill: var(--amber-800);
 }
 
+.task-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
 .task-descr {
   grid-column: 2 / 4;
 }
@@ -359,6 +366,12 @@ main {
   grid-column: 2 / 4;
   display: flex;
   justify-content: space-between;
+  margin-right: .5rem;
+  font-weight: 600;
+}
+
+.task-date {
+  color: var(--amber-950);
 }
 
 .popup-and-dim {
@@ -389,7 +402,8 @@ main {
 .popup-form {
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  flex-wrap: wrap;
+  padding: 2rem 3rem 3rem 3rem;
   flex: 1;
 }
 
@@ -399,12 +413,27 @@ main {
 }
 
 .popup-name {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 800;
+  padding: 0 .2rem;
+  border: 1px solid var(--amber-100);
+  border-radius: .2rem;
+  background: none;
+  margin-bottom: 1rem;
+}
+
+.popup-name:hover, 
+.popup-name:focus {
+  border: 1px solid var(--gray);
+  background: white;
 }
 
 .popup-descr {
   margin-top: 0.2rem;
+  resize: none;
+  border: 1px solid var(--gray);
+  border-radius: .2rem;
+  padding: .4rem;
 }
 
 .popup-task-info {
@@ -430,6 +459,13 @@ main {
 
 .popup-task-info label {
   margin-bottom: 0.1rem;
+}
+
+
+#task-date {
+  border-radius: .3rem;
+  box-shadow: none;
+  border: 1px solid var(--gray);
 }
 
 #dim-screen {
