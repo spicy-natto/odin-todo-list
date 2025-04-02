@@ -57,7 +57,7 @@ class TaskListView {
 
     const projectName = document.createElement("p");
     projectName.classList.add("task-project");
-    projectName.textContent = projects[task.project]?.name;
+    projectName.textContent = `#${projects[task.project]?.name}`;
     dateProjectDiv.appendChild(projectName);
 
     return li;
