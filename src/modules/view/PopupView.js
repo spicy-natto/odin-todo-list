@@ -173,11 +173,16 @@ class PopupView {
     return () => {
       const name = document.getElementById("popup-name")?.value;
       const description = document.getElementById("popup-descr")?.value;
-      const dueDate = parse(
-        document.getElementById("task-date")?.value ?? new Date().toDateString(),
-        "yyyy-MM-dd",
-        new Date(),
-      );
+      let dueDate = document.getElementById("task-date")?.value;
+      let validDueDate;
+      if (!(dueDate === "Invalid Date" || !dueDate)) {
+        validDueDate = parse(
+          document.getElementById("task-date")?.value ??
+            new Date().toDateString(),
+          "yyyy-MM-dd",
+          new Date(),
+        );
+      }
       const project = document.getElementById("task-proj-select")?.value;
       const priority = document.getElementById("task-priority-select")?.value;
 
@@ -186,7 +191,7 @@ class PopupView {
         id: item.id,
         name: name,
         description: description,
-        dueDate: dueDate,
+        dueDate: validDueDate,
         project: project,
         priority: priority,
         completed: false,
