@@ -174,6 +174,9 @@ class PopupView {
       const name = document.getElementById("popup-name")?.value;
       const description = document.getElementById("popup-descr")?.value;
       let dueDate = document.getElementById("task-date")?.value;
+      // This is a workaround that just defaults to current day if 
+      // there is an issue with the date. 
+      // TODO - update code so that it can accept no due date
       let validDueDate;
       if (!(dueDate === "Invalid Date" || !dueDate)) {
         validDueDate = parse(
