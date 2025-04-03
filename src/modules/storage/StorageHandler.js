@@ -1,6 +1,8 @@
-import ItemCache from "./ItemCache";
-import ItemStorage from "./ItemStorage";
-import Task from "../items/Task";
+import ItemCache from "./ItemCache.js";
+import ItemStorage from "./ItemStorage.js";
+import util from "../utilities/utilities.js"
+import Task from "../items/Task.js";
+import Project from "../items/Project.js";
 
 class StorageHandler {
   // StorageHandler will save an object containing all Item IDs
@@ -11,7 +13,7 @@ class StorageHandler {
   #saveItemsToStorage() {
     localStorage.setItem(
       StorageHandler.allItemsStorageId,
-      JSON.stringify(this.itemCache.getItems().map((item) => item.id))
+      JSON.stringify(this.itemCache.items.map((item) => item.id))
     );
   }
 
@@ -22,9 +24,18 @@ class StorageHandler {
     return this.itemCache.get(id);
   }
 
-  getItems() {
-    return this.itemCache.getItems();
+  get items() {
+    return this.itemCache.items;
   }
+
+  get tasks() {
+    return this.itemCache.items.filter((item) => item instanceof Task);
+  }
+
+  get projects() {
+    return this.itemCache.items.filter((item) => item instanceof Project);
+  }
+
 
   set(item) {
     this.itemCache.set(item);
@@ -46,7 +57,7 @@ class StorageHandler {
     if (itemIds) {
       this.itemCache = new ItemCache();
       itemIds.forEach((id) => {
-        this.itemCache.set(new Task(this.itemStorage.get(id)));
+        this.itemCache.set(util.itemFactory(this.itemStorage.get(id)));
       });
     }
   }

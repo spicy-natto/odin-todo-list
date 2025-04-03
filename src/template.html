@@ -1,129 +1,30 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odin Template Page</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Odin Template Page</title>
-</head>
-
-<body>
-  <div class="sidebar" id="sidebar">
-    <div class="logo">Replace with image</div>
-    <div class="add-task" id="add-task">
-      <img class="sidebar-icon" src="./images/plus-circle.svg" alt="Add task" />
-      <div class="add-task-text">Add Task</div>
-    </div>
-    <ul class="sidebar-items" id="sidebar-items">
-      <li class="sidebar-item">
-        <img class="sidebar-icon" src="./images/inbox-full-outline.svg" alt="Inbox" />
-        <div class="sidebar-label">Inbox</div>
-      </li>
-      <li class="sidebar-item">
-        <img class="sidebar-icon" src="./images/calendar-today.svg" alt="Today" />
-        <div class="sidebar-label">Today</div>
-      </li>
-      <li class="sidebar-item">
-        <img class="sidebar-icon" src="./images/calendar-month-outline.svg" alt="Upcoming" />
-        <div class="sidebar-label">Upcoming</div>
-      </li>
-      <li class="sidebar-item">
-        <img class="sidebar-icon" src="./images/check-circle-outline.svg" alt="Inbox" />
-        <div class="sidebar-label">Completed</div>
-      </li>
-    </ul>
-    <div class="projects">
-      <h3>Projects</h3>
-      <ul class="project-list" id="project-list">
-        <li class="project">
-          <img class="project-icon" src="./images/pound.svg" alt="project" />
-          <div class="project-name">Project 1</div>
-        </li>
-        <li class="project">
-          <img class="project-icon" src="./images/pound.svg" alt="project" />
-          <div class="project-name">Project 2</div>
-        </li>
-        <li class="project">
-          <img class="project-icon" src="./images/pound.svg" alt="project" />
-          <div class="project-name">Project 3</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <main>
-    <div class="main-content">
-      <div class="filter-title" id="filter-title">
-        <h1>Project 1</h1>
-        <p class="project-descr">Project 1 description</p>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <div class="logo-container" id="logo-container"></div>
+      <div class="task-add" id="task-add" tabindex="0"></div>
+      <ul class="sidebar-items" id="sidebar-items"></ul>
+      <div class="projects">
+        <h3>Projects</h3>
+        <ul class="project-list" id="project-list"></ul>
       </div>
-      <ul class="tasks" id="tasks">
-        <li class="task">
-          <button type="button" class="task-button"></button>
-          <div class="task-content">
-            <div class="task-info">
-              <div class="task-title">Test task 1</div>
-              <div class="task-descr">Test task description 1</div>
-            </div>
-            <div class="task-date-project">
-              <p class="task-date">01/02/2024</p>
-              <p class="task-project">Project 1</p>
-            </div>
-          </div>
-        </li>
-        <li class="task">
-          <button type="button" class="task-button"></button>
-          <div class="task-content">
-            <div class="task-info">
-              <div class="task-title">Test task 2</div>
-              <div class="task-descr">Test task description 2</div>
-            </div>
-            <div class="task-date-project">
-              <p class="task-date">01/02/2024</p>
-              <p class="task-project">Project 2</p>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
-  </main>
-  <div class="popup-and-dim" id="popup-and-dim">
-    <div class="popup" id="popup">
-      <form class="popup-form">
-        <div class="popup-name-descr">
-          <input type="text" class="popup-name" value="Test Task 1">
-          <textarea class="popup-descr">Test Task 1 description</textarea>
+    <main>
+      <div class="main-content">
+        <div class="filter-title" id="filter-title"></div>
+        <div>
+          <ul class="tasks" id="tasks"></ul>
         </div>
-        <div class="popup-task-info">
-          <div>
-            <label for="task-date" class="popup-date-label">Due Date:</label>
-            <input type="date" name="task-date" id="task-date" class="popup-date">
-          </div>
-          <div>
-            <label for="task-proj-select" class="task-proj-label">Project:</label>
-            <select name="task-project" id="task-proj-select" class="popup-task-proj">
-              <option value="project-1-id">Project 1</option>
-              <option value="project-2-id">Project 2</option>
-              <option value="project-3-id">Project 3</option>
-            </select>
-          </div>
-          <div>
-            <label for="task-proj-select" class="task-priority-label">Priority:</label>
-            <select name="task-priority" id="task-priority-select" class="popup-task-priority">
-              <option value="priority-1-id">P1</option>
-              <option value="priority-2-id">P2</option>
-              <option value="priority-3-id">P3</option>
-            </select>
-          </div>
-          <div>
-            <label for="task-completed" class="task-completed-label">Completed:</label>
-            <input type="checkbox" name="task-completed" id="task-completed" class="popup-task-completed">
-          </div>
-        </div>
-        <button class="popup-ok" id="popup-ok" type="button">OK</button>
-      </form>
+      </div>
+    </main>
+    <div class="popup-and-dim" id="popup-and-dim">
     </div>
-    <div id="dim-screen"></div>
-  </div>
-</body>
-
+  </body>
 </html>

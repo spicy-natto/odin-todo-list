@@ -3,6 +3,7 @@ import Task from "../items/Task.js";
 
 function initializeTask(n = 1, itemId) {
   return new Task({
+    objectType: "Task",
     id: itemId,
     name: `test task ${n}`,
     description: `test task description ${n}`,
@@ -14,11 +15,10 @@ function initializeTask(n = 1, itemId) {
 
 function initializeProject(n = 1, itemId) {
   return new Project({
+    objectType: "Project",
     id: itemId,
     name: `test project ${n}`,
     description: `test project description ${n}`,
-    priority: "High",
-    dueDate: new Date(new Date().toDateString()),
   });
 }
 

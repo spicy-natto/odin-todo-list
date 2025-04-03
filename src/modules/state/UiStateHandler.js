@@ -1,4 +1,4 @@
-import { isAfter, isEqual, subDays, addDays } from "date-fns";
+import { isAfter, isBefore, subDays, addDays } from "date-fns";
 import util from "../utilities/utilities.js";
 import Project from "../items/Project.js";
 import SidebarItem from "../items/SidebarItem.js";
@@ -8,17 +8,17 @@ import upcoming from "../../images/calendar-month-outline.svg";
 import completed from "../../images/check-circle-outline.svg";
 
 class UiStateHandler {
-  static sideBarItems = [
+  static sidebarItems = [
     new SidebarItem({
       name: "Inbox",
       svg: inbox,
-      filterType: "all",
+      filterType: "noProject",
     }),
     new SidebarItem({
       name: "Today",
       svg: today,
-      filterType: "dateEqual",
-      filterData: addDays(new Date(new Date().toDateString()), 1),
+      filterType: "dateLessThanOrEqual",
+      filterData: new Date(new Date().toDateString()),
     }),
     new SidebarItem({
       name: "Upcoming",
@@ -34,23 +34,27 @@ class UiStateHandler {
     }),
   ];
 
-  filter = new SidebarItem({
-    name: "Inbox",
-    svg: inbox,
-    filterType: "all",
-  });
+  constructor() {
+    this.setDefaultFilter();
+  }
 
   #createFilterFun(item) {
     let filterType = item instanceof Project ? "project" : item.filterType;
     switch (filterType) {
       case "project":
-        return (task) => task.project === item.id;
+        return (task) => task.project === item.id && !task.completed;
       case "dateEqualOrGreater":
-        return (task) => isAfter(task.dueDate, subDays(item.filterData, 1));
-      case "dateEqual":
-        return (task) => isEqual(task.dueDate, item.filterData);
+        return (task) =>
+          isAfter(task.dueDate, subDays(item.filterData, 1)) && !task.completed;
+      case "dateLessThanOrEqual":
+        return (task) =>
+          isBefore(task.dueDate, addDays(item.filterData, 1)) && !task.completed;
       case "completed":
-        return (task) => task.completed === true;
+        return (task) => task.completed;
+      case "noProject":
+        return (task) => {
+          return !task.project && !task.completed;
+        };
       default:
         // return all values
         return (task) => task;
@@ -58,9 +62,9 @@ class UiStateHandler {
   }
 
   createTaskViewData(projects, tasks) {
-    let projectsObj = util.itemArrayToObject(projects);
-    let projectsFromTasks = {};
-    let filteredTasks = tasks.filter(this.#createFilterFun(this.filter));
+    const projectsObj = util.itemArrayToObject(projects);
+    const projectsFromTasks = {};
+    const filteredTasks = tasks.filter(this.#createFilterFun(this.filter));
     filteredTasks.forEach(
       (task) => (projectsFromTasks[task.project] = projectsObj[task.project]),
     );
@@ -69,6 +73,12 @@ class UiStateHandler {
       projects: projectsFromTasks,
       tasks: filteredTasks,
     };
+  }
+
+  setDefaultFilter() {
+    this.filter = UiStateHandler.sidebarItems.find(
+      (sideBarItem) => sideBarItem.name === "Today",
+    );
   }
 }
 

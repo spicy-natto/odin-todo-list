@@ -17,7 +17,7 @@ class ItemCache {
         this.#items.delete(id);
     }
     
-    getItems() {
+    get items() {
         return Array.from(this.#items.values());
     }
 }
